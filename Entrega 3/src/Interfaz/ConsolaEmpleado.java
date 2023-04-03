@@ -23,6 +23,7 @@ public class ConsolaEmpleado {
     
     public void IniciarPrograma() {
         /*
+        
          * Muestra el menu de las opciones
          * Permite elegir una opcion
          * 
