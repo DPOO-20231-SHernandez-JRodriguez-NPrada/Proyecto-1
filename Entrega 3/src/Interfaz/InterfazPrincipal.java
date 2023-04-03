@@ -22,10 +22,10 @@ public class InterfazPrincipal {
     public static void main(String[] args) {
 
         InterfazPrincipal interfazPrincipal = new InterfazPrincipal();
-        
+
         interfazPrincipal.CargarAplicacion();
         interfazPrincipal.InicioDeSesion();
-        
+
     }
 
     /*
@@ -37,29 +37,30 @@ public class InterfazPrincipal {
     private void CargarAplicacion() {
         enrutadorPrincipal.CargarAplicacion();
     }
-    
+
     /*
      * InicioDeSesion
      * 
      * Muestra una interfaz en consola para que el usuario ingrese
      * usuario y contraseña
      * Llama al metodo del enrutador princiapl con el mismo nombre
-     * Le atribuya a consolaEmpleado una consola de administrador o de empleado, dependiendo 
+     * Le atribuya a consolaEmpleado una consola de administrador o de empleado,
+     * dependiendo
      * de la respuesta del enrutador principal
      * Inicia el programa principal
      */
     private void InicioDeSesion() {
 
         System.out.println("""
-        **************************************************
-        *               SYSTEMA HOTEL DPOO               *
-        **************************************************
+                **************************************************
+                *               SYSTEMA HOTEL DPOO               *
+                **************************************************
 
-        """);
+                """);
 
         boolean flag = true;
 
-        while(flag){
+        while (flag) {
             System.out.println("-                Inicio de sesion                -");
 
             String usuario = Input.input("Usuario: ");
@@ -68,21 +69,19 @@ public class InterfazPrincipal {
 
             String tipoUsuario = enrutadorPrincipal.ComprobarLogin(usuario, contrasenia);
 
-            if(tipoUsuario.equals("admin")){
+            if (tipoUsuario.equals("admin")) {
                 this.consolaEmpleado = new ConsolaAdmin(this);
                 flag = false;
-            }
-            else if(tipoUsuario.equals("empleado")){
+            } else if (tipoUsuario.equals("empleado")) {
                 this.consolaEmpleado = new ConsolaEmpleado(this);
                 flag = false;
-            }
-            else{
+            } else {
                 System.out.println("Usuario o contrasenia incorrectos");
                 System.out.println("Intente de nuevo");
                 System.out.println("\n");
                 String salir = Input.input("¿Desea salir de la aplicacion? Ingrese 'si' para salir: ");
 
-                if(salir.equals("si")){
+                if (salir.equals("si")) {
                     System.exit(0);
                 }
 
@@ -94,14 +93,19 @@ public class InterfazPrincipal {
     /*
      * IniciarAplicacion
      * 
-     * Inicia el loop principal del programa para la ejecucion de 
+     * Inicia el loop principal del programa para la ejecucion de
      * este, dependiendo del tipo de consola que se haya establecido
      */
     private void IniciarAplicacion() {
+        if (consolaEmpleado instanceof ConsolaAdmin) {
+            ComprobarTarifaActual();
+        }
+
+        consolaEmpleado.IniciarPrograma();
+
     }
-    
-    
 
-
+    private void ComprobarTarifaActual() {
+    }
 
 }

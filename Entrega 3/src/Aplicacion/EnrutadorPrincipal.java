@@ -104,7 +104,6 @@ public class EnrutadorPrincipal {
         HashMap<String, Factura> datosFacturas = controladorBD.CargarDatosFacturas();
         adminFacturas.AsignarFacturas(datosFacturas);
     }
-
     
     public String ComprobarLogin(String usuario, String contrasenia) {
         return adminLogin.ComprobarLogin(usuario, contrasenia);
