@@ -22,9 +22,13 @@ public class ConsolaEmpleado {
     
     
     public void IniciarPrograma() {
+        /*
+         * Muestra el menu de las opciones
+         * Permite elegir una opcion
+         */
         this.MostrarMenuPrincipal();
         String numeroOpcion = Input.input(mensaje);
-        Integer.parseInt(numeroOpcion);
+        EjecutarOpcion(Integer.parseInt(numeroOpcion));
     }
 
     public void MostrarMenuPrincipal() {
