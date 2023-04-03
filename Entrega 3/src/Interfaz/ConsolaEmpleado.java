@@ -1,6 +1,9 @@
 package Interfaz;
+import Aplicacion.Input;
 
 public class ConsolaEmpleado {
+
+    private String mensaje = "Elija una opcion";
 
     private InterfazPrincipal padreInterfaz;
 
@@ -19,6 +22,9 @@ public class ConsolaEmpleado {
     
     
     public void IniciarPrograma() {
+        this.MostrarMenuPrincipal();
+        String numeroOpcion = Input.input(mensaje);
+        Integer.parseInt(numeroOpcion);
     }
 
     public void MostrarMenuPrincipal() {
@@ -34,6 +40,6 @@ public class ConsolaEmpleado {
     }
 
     public void EjecutarOpcion(int numeroOpcion){
-
+        
     }
 }
