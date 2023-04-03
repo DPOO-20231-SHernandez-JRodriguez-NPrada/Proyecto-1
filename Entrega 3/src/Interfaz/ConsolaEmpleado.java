@@ -3,7 +3,6 @@ import Aplicacion.Input;
 
 public class ConsolaEmpleado {
 
-    private String mensaje = "Elija una opcion";
 
     private InterfazPrincipal padreInterfaz;
 
@@ -29,7 +28,7 @@ public class ConsolaEmpleado {
          * 
          */
         this.MostrarMenuPrincipal();
-        String numeroOpcion = Input.input(mensaje);
+        String numeroOpcion = Input.input("Elija la opcion");
         EjecutarOpcion(Integer.parseInt(numeroOpcion));
     }
 
