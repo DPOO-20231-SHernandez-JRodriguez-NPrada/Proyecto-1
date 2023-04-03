@@ -25,6 +25,7 @@ public class ConsolaEmpleado {
         /*
          * Muestra el menu de las opciones
          * Permite elegir una opcion
+         * 
          */
         this.MostrarMenuPrincipal();
         String numeroOpcion = Input.input(mensaje);
