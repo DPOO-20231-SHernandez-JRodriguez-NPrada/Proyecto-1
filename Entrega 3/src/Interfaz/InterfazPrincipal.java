@@ -1,6 +1,7 @@
 package Interfaz;
 
 import Aplicacion.EnrutadorPrincipal;
+import Aplicacion.Input;
 
 /**
  * InterfazPrincipal
@@ -34,7 +35,7 @@ public class InterfazPrincipal {
      * de iniciar aplicacion
      */
     private void CargarAplicacion() {
-        enrutadorPrincipal.CragarAplicacion();
+        enrutadorPrincipal.CargarAplicacion();
     }
     
     /*
@@ -48,7 +49,55 @@ public class InterfazPrincipal {
      * Inicia el programa principal
      */
     private void InicioDeSesion() {
-        
+
+        System.out.println("""
+        **************************************************
+        *               SYSTEMA HOTEL DPOO               *
+        **************************************************
+
+        """);
+
+        boolean flag = true;
+
+        while(flag){
+            System.out.println("-                Inicio de sesion                -");
+
+            String usuario = Input.input("Usuario: ");
+            System.out.println();
+            String contrasenia = Input.input("Contrasenia: ");
+
+            String tipoUsuario = enrutadorPrincipal.ComprobarLogin(usuario, contrasenia);
+
+            if(tipoUsuario.equals("admin")){
+                this.consolaEmpleado = new ConsolaAdmin(this);
+                flag = false;
+            }
+            else if(tipoUsuario.equals("empleado")){
+                this.consolaEmpleado = new ConsolaEmpleado(this);
+                flag = false;
+            }
+            else{
+                System.out.println("Usuario o contrasenia incorrectos");
+                System.out.println("Intente de nuevo");
+                System.out.println("\n");
+                String salir = Input.input("¿Desea salir de la aplicacion? Ingrese 'si' para salir: ");
+
+                if(salir.equals("si")){
+                    System.exit(0);
+                }
+
+            }
+        }
+        IniciarAplicacion();
+    }
+
+    /*
+     * IniciarAplicacion
+     * 
+     * Inicia el loop principal del programa para la ejecucion de 
+     * este, dependiendo del tipo de consola que se haya establecido
+     */
+    private void IniciarAplicacion() {
     }
     
     
