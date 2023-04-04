@@ -36,7 +36,7 @@ public class AdministradorTarifas {
             }
         } //Aqui ya se tiene la lista a la cual se le aplicaran los cambios
         LocalDate fecha_for=fechai;
-        for(int i=diasEntreFechas2; i<diasEntreFechas; i++){
+        for(int i=diasEntreFechas2; i<=diasEntreFechas; i++){
             String diaSemana = fecha_for.getDayOfWeek().name(); //Obtiene el dia de la semana que le corresponde a esa fecha como string
             if (dias.contains(diaSemana)){ //Si el dia de la semana a la que le corresponde esa fecha esta dentro de la lista de dias que se dio por parametro
                 if (lista[i]>precio || lista[i]<0){ //Verifica que el precio nuevo sea menor o que sea negativo
