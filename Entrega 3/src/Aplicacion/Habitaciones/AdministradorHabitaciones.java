@@ -2,8 +2,10 @@ package Aplicacion.Habitaciones;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
+import java.util.Set;
 import java.time.temporal.ChronoUnit;
 import java.time.*;
 
@@ -36,6 +38,31 @@ public class AdministradorHabitaciones {
     } catch (DateTimeException e) {
         System.out.println("Se produjo una excepción al trabajar con fechas: " + e.getMessage());
     }
+    }
+
+    public ArrayList<String> buscarHabitaciones(Boolean cocina, Boolean balcon, Boolean vista, String fechai, String fechaf, String tipo){
+        // Recibe las fechas iniciales y las caracteristicas que se quieren
+        //Retorna una lista de id con las habitaciones que cumplen todo
+        
+        ArrayList<String> ids_validos = new ArrayList<String>();
+        try {
+        
+        Set<String> ids = this.hashHabitaciones.keySet();
+        for(String id : ids){//recorre cada id
+            Boolean disponible= verificarDisponibilidad(id, fechai, fechaf);
+            Boolean caracteristicas = verificarCaracteristicas(id, vista, cocina, balcon, tipo);
+            if (disponible && caracteristicas){
+                ids_validos.add(id); // si esta disponible y cumple con las caracteristicas, se agrega a la lista de id de habitaciones validas
+            }
+
+
+        }
+
+    } catch (NullPointerException | ClassCastException | ConcurrentModificationException ex) {
+        System.out.println("Se produjo un error con el hashmap: " + ex.getMessage());
+    }
+        return ids_validos;
+        
     }
 
 
@@ -96,7 +123,7 @@ public class AdministradorHabitaciones {
         } catch (NullPointerException | ClassCastException | ConcurrentModificationException ex) {
             System.out.println("Se produjo un error con el hashmap: " + ex.getMessage());
         }
-        return centinela;
+        return centinela; // retorna true si cumple | false si no cumple
     }
     
 }

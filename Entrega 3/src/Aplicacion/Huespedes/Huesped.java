@@ -16,8 +16,7 @@ public class Huesped {
         this.correo=correo;
         this.celular=celular;
         this.principal=principal;
-        this.acompanantes = new ArrayList<Huesped>(); // no se diferencia si es principal o acompanante
-
+        this.acompanantes = new ArrayList<Huesped>();
     }
     public ArrayList<Huesped> getAcompanantes(){
         return this.acompanantes;
