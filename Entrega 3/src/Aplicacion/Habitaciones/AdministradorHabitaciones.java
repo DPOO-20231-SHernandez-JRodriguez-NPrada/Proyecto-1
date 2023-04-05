@@ -2,6 +2,7 @@ package Aplicacion.Habitaciones;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ConcurrentModificationException;
 import java.util.HashMap;
 import java.time.temporal.ChronoUnit;
 import java.time.*;
@@ -37,9 +38,11 @@ public class AdministradorHabitaciones {
     }
     }
 
+
     public Boolean verificarDisponibilidad(String id, String fechai, String fechaf){ // Con dos fechas en dd/MM/YYYY verifica si esta vacia en ese rango de fechas
-        Boolean centinela=true;
+        Boolean centinela=false;
         try{
+        centinela = true;
         HabitacionBase habitacion = this.hashHabitaciones.get(id); // se obtiene la habitacion del hashmap
         Boolean[] dias = habitacion.getOcupado(); //se obtiene la lista donde se ven cuando esta ocupada
         LocalDate finicial= LocalDate.parse(fechai, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
@@ -63,6 +66,37 @@ public class AdministradorHabitaciones {
         System.out.println("Se produjo una excepción al trabajar con fechas: " + e.getMessage());
     }
     return centinela; //retorna true si esta disponible | false si alguno de los dias esta ocupado
-} 
+}
+    
+    public Boolean verificarCaracteristicas(String id, Boolean vista, Boolean cocina, Boolean balcon, String tipo){ 
+        // Esta se encarga de solo dejar pasar las habitaciones del mismo tipo y con caracteristicas requeridas
+        Boolean centinela=false;
+        try{
+        centinela=true;
+        HabitacionBase habitacion = this.hashHabitaciones.get(id); // se obtiene la habitacion del hashmap
+        if (!tipo.equals(habitacion.getTipo())){ // verifica que el tipo sea igual. Si es diferente, es falso
+            centinela=false;
+        }
+        if (vista){
+            if (!habitacion.getVista()){ //Si se requiere vista y no la tiene, es falso
+                centinela=false;
+            }
+        }
+        if (cocina){
+            if (!habitacion.getCocina()){ //Si se requiere cocina y no la tiene, es falso
+                centinela=false;
+            }
+        }
+        if (balcon){
+            if (!habitacion.getBalcon()){ //Si se requiere balcon y no la tiene, es falso
+                centinela=false;
+            }
+        }
+
+        } catch (NullPointerException | ClassCastException | ConcurrentModificationException ex) {
+            System.out.println("Se produjo un error con el hashmap: " + ex.getMessage());
+        }
+        return centinela;
+    }
     
 }
