@@ -98,8 +98,10 @@ public class ConsolaEmpleado {
         
         ArrayList<HabitacionBase> HabitacionesBs = padreInterfaz.buscarHabitaciones(cocinaB, balconB, vistaB, fechainicial, fechafinal, tipo);
         String estadoReserva = Input.input("Ingrese el estado de reserva");
-        padreInterfaz.CrearReserva(documento,estadoReserva,personasEsperadas,fechainicial,fechafinal,HabitacionesBs,nombre,correo,celular);
+        double precio = padreInterfaz.CrearReserva(documento,estadoReserva,personasEsperadas,fechainicial,fechafinal,HabitacionesBs,nombre,correo,celular);
         System.out.println("Se creo con exito su reserva");
+        System.out.println("El valor total de su reserva es de" + String.valueOf(precio));
+
     }
     public void VerReserva()
     {

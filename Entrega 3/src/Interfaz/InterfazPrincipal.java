@@ -120,9 +120,10 @@ public class InterfazPrincipal {
         return HabitacionesBs;
     }
 
-    protected void CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial,String fechafinal, ArrayList<HabitacionBase> habitacionesBs, String nombre, String correo, String celular) 
+    protected double CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial,String fechafinal, ArrayList<HabitacionBase> habitacionesBs, String nombre, String correo, String celular) 
     {
-        enrutadorPrincipal.CrearReserva(documento, estadoReserva, personasEsperadas, fechainicial, fechafinal, habitacionesBs, nombre, correo, celular);
+        double precio = enrutadorPrincipal.CrearReserva(documento, estadoReserva, personasEsperadas, fechainicial, fechafinal, habitacionesBs, nombre, correo, celular);
+        return precio;
     }
 
     protected String VerReserva(String documento) 
