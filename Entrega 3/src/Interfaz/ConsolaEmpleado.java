@@ -112,15 +112,15 @@ public class ConsolaEmpleado {
          */
         System.out.println("Ingrese los siguientes datos para crear la reserva");
         String documento = Input.input("Ingrese el documento del huesped principal");
-        String nombre = Input.input("Ingrese el nopmbre del huesped principal");
+        String nombre = Input.input("Ingrese el nombre del huesped principal");
         String correo = Input.input("Ingrese el correo del huesped principal");
-        String celular = Input.input("Ingrese el documento del huesped principal");
-
+        String celular = Input.input("Ingrese el celular del huesped principal");
         int personasEsperadas = Integer.parseInt(Input.input("Ingrese el numero de personas que se esperan"));
         
         String fechainicial = Input.input("Ingrese la fecha de ingreso esperado(formato -01/01/2000-)");
         String fechafinal = Input.input("Ingrese la fecha de salida(formato -01/01/2000-)");
-
+        System.out.println("Seleccione con true o false las caracteristicas que desea un su habitacion");
+        
         String vista = Input.input("¿Es necesario que cuente con vistas?(true/false)");
         String cocina = Input.input("¿Es necesario que cuente con cocina?(true/false)");
         String balcon = Input.input("¿Es necesario que cuente con balcon?(true/false)");
