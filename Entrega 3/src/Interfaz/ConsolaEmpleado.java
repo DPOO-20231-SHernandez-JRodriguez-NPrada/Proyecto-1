@@ -1,10 +1,13 @@
 package Interfaz;
+import java.util.ArrayList;
+
+
 import Aplicacion.Input;
+import Aplicacion.Habitaciones.HabitacionBase;
 
 public class ConsolaEmpleado {
 
-
-    private InterfazPrincipal padreInterfaz;
+    protected InterfazPrincipal padreInterfaz;
 
     /* 
     * Constructor
@@ -22,14 +25,23 @@ public class ConsolaEmpleado {
     
     public void IniciarPrograma() {
         /*
-        
          * Muestra el menu de las opciones
-         * Permite elegir una opcion
-         * 
+         * Permite elegir entre diferentes opciones haste que se termine el loop
          */
-        this.MostrarMenuPrincipal();
-        String numeroOpcion = Input.input("Elija la opcion");
-        EjecutarOpcion(Integer.parseInt(numeroOpcion));
+        boolean parar = false;
+        while(parar == false)
+        {
+            this.MostrarMenuPrincipal();
+            String numeroOpcion = Input.input("Elija la opcion");
+            if (Integer.parseInt(numeroOpcion) != 9)
+            {
+                EjecutarOpcion(Integer.parseInt(numeroOpcion));
+            }
+            else
+            {
+                parar = true;
+            }
+        }
     }
 
     public void MostrarMenuPrincipal() {
@@ -37,14 +49,150 @@ public class ConsolaEmpleado {
         """
         1. Crear reserva
         2. Ver reserva
-        3. Añadir servicio
-        4. Hacer check in
-        5. Hacer check out
+        3. Eliminar reserva
+        4. Añadir servicio
+        5. Hacer check in
+        6. Hacer check out
         9. Salir
         """);
     }
 
-    public void EjecutarOpcion(int numeroOpcion){
+    public void EjecutarOpcion(int numeroOpcion)
+    {
+        if(numeroOpcion == 1)
+        {
+            CrearReserva();
+        }
+    }
+
+
+    
+    public void CrearReserva()
+    {
+        /*
+         * Se piden los datos necesarios para crear la reserva
+         * Además de especificaciones de como desea la habitacion para encontrale una
+         */
+        System.out.println("Ingrese los siguientes datos para crear la reserva");
+        String documento = Input.input("Ingrese el documento del huesped principal");
+        String nombre = Input.input("Ingrese el nopmbre del huesped principal");
+        String correo = Input.input("Ingrese el correo del huesped principal");
+        int celular = Integer.parseInt(Input.input("Ingrese el documento del huesped principal"));
+
+        int personasEsperadas = Integer.parseInt(Input.input("Ingrese el numero de personas que se esperan"));
+        
+        String fechainicial = Input.input("Ingrese la fecha de ingreso esperado(formato -01/01/2000-)");
+        String fechafinal = Input.input("Ingrese la fecha de salida(formato -01/01/2000-)");
+
+        String vista = Input.input("¿Es necesario que cuente con vistas?(true/false)");
+        String cocina = Input.input("¿Es necesario que cuente con cocina?(true/false)");
+        String balcon = Input.input("¿Es necesario que cuente con balcon?(true/false)");
+        boolean vistaB = Boolean.parseBoolean(vista);
+        boolean cocinaB = Boolean.parseBoolean(cocina);
+        boolean balconB = Boolean.parseBoolean(balcon);
+
+        System.out.println("Seleccione un tipo de habitacion");
+        System.out.println("Contamos con habitaciones de tipo: 1. estandar, 2. suite, 3. doble");
+        String tipo = Input.input("Escriba el tipo de habitacion deseada");
+        
+        ArrayList<HabitacionBase> HabitacionesBs = padreInterfaz.buscarHabitaciones(cocinaB, balconB, vistaB, fechainicial, fechafinal, tipo);
+        String estadoReserva = Input.input("Ingrese el estado de reserva");
+        padreInterfaz.CrearReserva(documento,estadoReserva,personasEsperadas,fechainicial,fechafinal,HabitacionesBs,nombre,correo,celular);
+        System.out.println("Se creo con exito su reserva");
+    }
+    public void VerReserva()
+    {
+        System.out.println("Ingrese los siguientes datos para verificar la reserva");
+        String documento = Input.input("Ingrese el documento del huesped principal");
+        String Texto = padreInterfaz.VerReserva(documento);
+        String[] info = Texto.split(",");
+        System.out.println("El documento del huesped principal es " + documento + ".");
+        System.out.println("La fecha de ingreso es: " + info[1] + ".");
+        System.out.println("La fecha de salida es: " + info[2] + ".");
+        System.out.println("Se esperan un total de " + info[3] + " personas.");
+        System.out.println("El total de habitaciones reservadas es de " + info[4] + ".");
+        System.out.println("Los id de las habitaciones son " + info[5].split(";") + ".");
+    }
+    public void EliminarReserva()
+    {
+        System.out.println("Ingrese los siguientes datos para eliminar la reserva");
+        String documento = Input.input("Ingrese el documento del huesped principal");
+        String fechactual = Input.input("Ingrese la fecha actual");
+        padreInterfaz.EliminarReserva(documento,fechactual);
+        System.out.println("Su reserva ha sido cancelada");
+    }
+    public void AñadirServicio()
+    {
+        String descripcion = "";
+        double precio = 0;
+        System.out.println("Para cargar el servicio ingrese los siguientes datos");
+        String documento = Input.input("Ingrese el documento del huesped principal");
+        String fecha = Input.input("Ingrese la fecha en la que se consumio el producto");
+        boolean pagado = Boolean.parseBoolean(Input.input("Ingrese la fecha en la que se consumio el producto"));
+        String servicio = Input.input("Ingrese el nombre del servicio");
+        if(servicio.equals("Restaurante"))
+        {
+            boolean parar = false;
+            while(parar == false)
+            {
+                System.out.println(
+                    """
+                        El menu del restaurante es el siguiente con sus precios
+                    1) Hamburguesa-5.99
+                    2) Pizza-7.99
+                    3)Papas Fritas-4.99
+                    4) Perro Caliente-5.99
+                    5) Nachos-3.99
+                    6) Ensalada Cesar-7.99
+                    7) Ensalada de Frutas-3.99
+                    8) Omelet-4.99
+                    9) Huevos Fritos-3.99
+                    10) Huevos Revueltos-3.99
+                    11) Mojito-12.49
+                    12) Margarita-14.49
+                    13) Coca-Cola-3.99
+                    14) Agua-3.99
+                    15) Cerveza-4.99
+                    """);
+                String producto = Input.input("Ingrese el nombre del producto");
+                String cantidad = Input.input("Ingrese las veces que se consumio dicho producto");
+                String confirmar = Input.input("Escriba cancelar para no guardar este producto. Escriba repetir para repetir el proceso completo.Escriba continuar para no hacer ninguna de los opciones anteriores.");
+                String pararT = Input.input("Si desea finalizar el proceso escriba parar");
+                if (confirmar.equals("cancelar"))
+                {
+                    producto = "";
+                    cantidad = "";                
+                }
+                if (confirmar.equals("repetir"))
+                {
+                    producto = "";
+                    cantidad = "";
+                    descripcion = "";                
+                }
+                if (pararT.equals("parar"))  
+                {   
+                    parar = true;
+                }
+                else
+                {
+                    if (descripcion.equals("")==false) 
+                    {
+                        descripcion += ";";
+                    }
+                    descripcion = producto + cantidad;
+                    precio += padreInterfaz.precioProducto(producto);
+                }
+            }
+        }
+        padreInterfaz.AñadirServicio(documento,servicio,descripcion,fecha,pagado,precio);
+
+    }
+    public void HacerCheckin()
+    {
+        
+    }
+    public void HacerCheckout()
+    {
         
     }
 }

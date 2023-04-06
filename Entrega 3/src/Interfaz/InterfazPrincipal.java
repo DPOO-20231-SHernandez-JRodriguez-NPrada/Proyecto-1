@@ -1,7 +1,10 @@
 package Interfaz;
 
+import java.util.ArrayList;
+
 import Aplicacion.EnrutadorPrincipal;
 import Aplicacion.Input;
+import Aplicacion.Habitaciones.HabitacionBase;
 
 /**
  * InterfazPrincipal
@@ -104,8 +107,43 @@ public class InterfazPrincipal {
         consolaEmpleado.IniciarPrograma();
 
     }
-
+    public EnrutadorPrincipal getEP()
+    {
+        return this.enrutadorPrincipal;
+    }
     private void ComprobarTarifaActual() {
+    }
+
+    protected ArrayList<HabitacionBase> buscarHabitaciones(Boolean cocinaB, Boolean balconB, Boolean vistaB, String fechainicial, String fechafinal, String tipo)
+    {
+        ArrayList<HabitacionBase> HabitacionesBs = enrutadorPrincipal.buscarHabitaciones(cocinaB, balconB, vistaB, fechainicial, fechafinal, tipo);
+        return HabitacionesBs;
+    }
+
+    protected void CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial,String fechafinal, ArrayList<HabitacionBase> habitacionesBs, String nombre, String correo, int celular) 
+    {
+        enrutadorPrincipal.CrearReserva(documento, estadoReserva, personasEsperadas, fechainicial, fechafinal, habitacionesBs, nombre, correo, celular);
+    }
+
+    protected String VerReserva(String documento) 
+    {
+        return enrutadorPrincipal.VerReserva(documento);
+    }
+
+    public void EliminarReserva(String documento, String fechactual) 
+    {
+        enrutadorPrincipal.EliminarReserva(documento, fechactual);
+    }
+
+    public double precioProducto(String producto) 
+    {
+        return enrutadorPrincipal.precioProducto(producto);
+    }
+
+    public void AñadirServicio(String documento, String servicio, String descripcion, String fecha, boolean pagado,
+            double precio) 
+    {
+                enrutadorPrincipal.AñadirServicio(documento, servicio, descripcion, fecha, pagado, precio);
     }
 
 }
