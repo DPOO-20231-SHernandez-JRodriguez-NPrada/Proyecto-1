@@ -1,5 +1,5 @@
 Nombre,Precio,HoraInicio,HoraFin,ValidoHabitacion
-Hamburguesa,5.99,12:00;23:00,true
+Hamburguesa,5.99,12:00,23:00,true
 Pizza,7.99,12:00,23:00,true
 Papas Fritas,4.99,12:00,23:00,true
 Perro Caliente,5.99,12:00,23:00,true
