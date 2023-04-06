@@ -61,47 +61,47 @@ public class EnrutadorPrincipal {
         CargarDatosHabitaciones();
         CargarDatosHuespedes();
         CargarDatosTarifas();
-        cargarDatosMenu();
+        CargarDatosMenu();
         CargarDatosFacturas();
     }
 
     private void CargarDatosLogin() {
-        HashMap<String,String> datosLogin = controladorBD.CargarDatosLogin();
+        HashMap<String,String> datosLogin = controladorBD.ConseguirDatosLogin();
         adminLogin.AsignarDatos(datosLogin);
     } 
 
     private void CargarDatosReservas() {
-        HashMap<String, Reserva> datosReservas = controladorBD.CargarDatosReservas();
+        HashMap<String, Reserva> datosReservas = controladorBD.ConseguirDatosReservas();
         adminReservas.AsignarDatosReserva(datosReservas);
     }
 
     private void CargarDatosServiciosBase() {
-        ArrayList<ServicioBase> datosServiciosBase = controladorBD.CargarServiciosBase();
+        ArrayList<ServicioBase> datosServiciosBase = controladorBD.ConseguirServiciosBase();
         adminServicios.AsignarServiciosBase(datosServiciosBase);
     }
 
     private void CargarDatosHabitaciones() {
-        HashMap<String,HabitacionBase> datosHabitacionBase = controladorBD.CargarHabitacionesBase();
+        HashMap<String,HabitacionBase> datosHabitacionBase = controladorBD.ConseguirHabitacionesBase();
         adminHabitaciones.AsignarHabitacionesBase(datosHabitacionBase);
     }
 
     private void CargarDatosHuespedes() {
-        HashMap<String, Huesped> datosHuespedes = controladorBD.CargarDatosHuespedes();
+        HashMap<String, Huesped> datosHuespedes = controladorBD.ConseguirDatosHuespedes();
         adminHuespedes.AsignarHuespedes(datosHuespedes);
     }
 
     private void CargarDatosTarifas() {
-        ArrayList<Tarifa> datosTarifas = controladorBD.CargarDatosTarifas();
+        ArrayList<Tarifa> datosTarifas = controladorBD.ConseguirDatosTarifas();
         adminTarifas.AsignarTarifas(datosTarifas);   
     }
 
-    private void cargarDatosMenu() {
-        ArrayList<Producto> menuProductos = controladorBD.CargarMenu();
+    private void CargarDatosMenu() {
+        ArrayList<Producto> menuProductos = controladorBD.ConseguirMenu();
         adminServicios.AsignarMenu(menuProductos);
     }
 
     private void CargarDatosFacturas() {
-        HashMap<String, Factura> datosFacturas = controladorBD.CargarDatosFacturas();
+        HashMap<String, ArrayList<Factura>> datosFacturas = controladorBD.ConseguirDatosFacturas();
         adminFacturas.AsignarFacturas(datosFacturas);
     }
     
