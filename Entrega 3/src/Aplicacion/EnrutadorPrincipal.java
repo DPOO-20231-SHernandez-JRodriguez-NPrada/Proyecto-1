@@ -109,6 +109,10 @@ public class EnrutadorPrincipal {
         return adminLogin.ComprobarLogin(usuario, contrasenia);
     }
 
+    public void cambiarTarifa(String tipo, int anio, Double precio, String finicio, String ffinal, ArrayList<String> dias){
+        this.adminTarifas.cambiarTarifa(tipo, anio, precio, finicio, ffinal, dias);
+    }
+
 
 
 }

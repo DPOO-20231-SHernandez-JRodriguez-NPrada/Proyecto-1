@@ -40,28 +40,26 @@ public class AdministradorHabitaciones {
     }
     }
 
-    public ArrayList<String> buscarHabitaciones(Boolean cocina, Boolean balcon, Boolean vista, String fechai, String fechaf, String tipo){
+    public ArrayList<HabitacionBase> buscarHabitaciones(Boolean cocina, Boolean balcon, Boolean vista, String fechai, String fechaf, String tipo){
         // Recibe las fechas iniciales y las caracteristicas que se quieren
-        //Retorna una lista de id con las habitaciones que cumplen todo
+        //Retorna una lista de las habitaciones que cumplen todo
         
-        ArrayList<String> ids_validos = new ArrayList<String>();
+        ArrayList<HabitacionBase> hab_validos = new ArrayList<HabitacionBase>();
         try {
-        
-        Set<String> ids = this.hashHabitaciones.keySet();
+        Set<String> ids = this.hashHabitaciones.keySet(); //obtiene todos los ids del hashMap
         for(String id : ids){//recorre cada id
             Boolean disponible= verificarDisponibilidad(id, fechai, fechaf);
             Boolean caracteristicas = verificarCaracteristicas(id, vista, cocina, balcon, tipo);
             if (disponible && caracteristicas){
-                ids_validos.add(id); // si esta disponible y cumple con las caracteristicas, se agrega a la lista de id de habitaciones validas
+                HabitacionBase habitacion = hashHabitaciones.get(id);
+                hab_validos.add(habitacion); // si esta disponible y cumple con las caracteristicas, se agrega a la lista de habitaciones validas
             }
-
-
         }
 
     } catch (NullPointerException | ClassCastException | ConcurrentModificationException ex) {
         System.out.println("Se produjo un error con el hashmap: " + ex.getMessage());
     }
-        return ids_validos;
+        return hab_validos;
         
     }
 

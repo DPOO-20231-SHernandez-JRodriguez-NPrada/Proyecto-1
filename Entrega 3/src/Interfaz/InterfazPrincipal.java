@@ -14,9 +14,15 @@ public class InterfazPrincipal {
 
     private EnrutadorPrincipal enrutadorPrincipal;
     private ConsolaEmpleado consolaEmpleado;
+    private ConsolaAdmin consolaAdmin;
 
     public InterfazPrincipal() {
         this.enrutadorPrincipal = new EnrutadorPrincipal();
+        this.consolaAdmin = new ConsolaAdmin(this);
+        this.consolaEmpleado = new ConsolaEmpleado(this);
+    }
+    public EnrutadorPrincipal getEP(){
+        return this.enrutadorPrincipal;
     }
 
     public static void main(String[] args) {

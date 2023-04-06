@@ -10,8 +10,8 @@ public class AdministradorHuespedes {
     public void AsignarHuespedes(HashMap<String, Huesped> datosHuespedes) {
     }
 
-    public void crearHuesped(String nombre, String doc, String correo, int celular, Boolean principal){ // se crea el huesped principal
-        Huesped huesped = new Huesped(nombre, doc, correo, celular, principal);
+    public void crearHuesped(String nombre, String doc, String correo, int celular){ // se crea el huesped principal
+        Huesped huesped = new Huesped(nombre, doc, correo, celular);
         try{
         this.hashHuesped.put(doc, huesped);}
         catch (NullPointerException | ClassCastException | ConcurrentModificationException ex) {
@@ -19,8 +19,8 @@ public class AdministradorHuespedes {
         }
 
     }
-    
-    public Boolean anadirHuesped(String doc1, String nombre, String doc, String correo, int celular, Boolean principal){ // cuando ya se tiene el huesped principal, se agregan los acompañantes
+    /** 
+    public Boolean anadirHuesped(String doc1, String nombre, String doc, String correo, int celular){ // cuando ya se tiene el huesped principal, se agregan los acompañantes
         Boolean centinela=false; // esto se encargara de que no hayan errores
         try{
         centinela=true;
@@ -31,7 +31,7 @@ public class AdministradorHuespedes {
             centinela=false;
         }
         if (centinela){ // si existe ese doc1 y el huesped obtenido es principal
-            Huesped acomp = new Huesped(nombre, doc, correo, celular, principal); // se crea el acompanante
+            Huesped acomp = new Huesped(nombre, doc, correo, celular, false); // se crea el acompanante
             ArrayList<Huesped> lista = hPrincipal.getAcompanantes(); // se obtiene la lista de acompanates
             lista.add(acomp); // se añade el acompanante a la lista
             hPrincipal.setAcompanantes(lista); //se sobreescribe la lista con el nuevo acompanante
@@ -43,7 +43,7 @@ public class AdministradorHuespedes {
 
         return centinela; //si es true, todo salio bien | si es false, algo fallo y no se agrego el huesped (puede ser que el doc1 no exista o que se intenta agregar a algo que no es principal)
 
-    }
+    } */
 
     public void eliminarHuesped(String doc){
         try{

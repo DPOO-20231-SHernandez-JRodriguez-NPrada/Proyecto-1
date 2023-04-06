@@ -2,7 +2,7 @@ package Interfaz;
 
 public class ConsolaEmpleado {
 
-    private InterfazPrincipal padreInterfaz;
+    protected InterfazPrincipal padreInterfaz;
 
     /* 
     * Constructor
