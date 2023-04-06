@@ -52,9 +52,9 @@ public class TraductorObject {
                     for (String llave : llavesMapa) {
                         Reserva reserva = mapaReservas.get(llave);
                         ArrayList<Huesped> grupo = reserva.getGrupo();
-                        ArrayList<HabitacionReserva> habitaciones = reserva.getHabitaciones();
+                        ArrayList<HabitacionReserva> habitaciones = reserva.getHabitacionesReservadas();
 
-                        myWriterReservas.write(reserva.getDocumento() + "," + reserva.getEstadoReserva() + "," + reserva.getPersonasEsperadas() + "," + reserva.getFechaLlegada() + "," + reserva.getFechaSalida());
+                        myWriterReservas.write(reserva.getDocumento() + "," + reserva.getEstadoReserva() + "," + reserva.getPersonasEsperadas() + "," + reserva.getFechaIni() + "," + reserva.getFechaFin());
                         myWriterReservas.write("************************************************");
                         for (Huesped huesped : grupo) {
                             myWriterReservas.write(huesped.getNombre() + "," + huesped.getDocumento() + "," + huesped.getCorreo() + "," + huesped.getCelular());
@@ -63,6 +63,7 @@ public class TraductorObject {
                             String nombreHuesped = huesped.getNombre();
                             String documentoHuesped = huesped.getDocumento();
                             String correoHuesped = huesped.getCorreo();
+                            /*Se cambio de string a int */
                             String numeroCelularHuesped = huesped.getCelular();
 
                             File archivoServiciosHuesped =  new File("Entrega 3/Data/Reservas/HuespedesServicios"+documentoHuesped+"_"+nombreHuesped+".csv");
@@ -76,7 +77,7 @@ public class TraductorObject {
                             ArrayList<Servicio> servicios = huesped.getServicios();
 
                             for (Servicio servicio : servicios) {
-                                myWriterServiciosHuesped.write(servicio.getNombre()+","+servicio.getPrecio()+","+servicio.getDescripcion()+","+servicio.getRegistro()+","+servicio.getFecha()+","+servicio.getPagado());
+                                myWriterServiciosHuesped.write(servicio.getNombre()+","+servicio.getPrecio()+","+servicio.getDescripcion()+","+servicio.getRegistro()+","+servicio.getFecha()+","+servicio.isPagado());
                             }
 
                             myWriterServiciosHuesped.close();
@@ -105,7 +106,7 @@ public class TraductorObject {
                             ArrayList<Servicio> servicios = habitacion.getServicios();
 
                             for (Servicio servicio : servicios) {
-                                myWriterServiciosHabitacion.write(servicio.getNombre()+","+servicio.getPrecio()+","+servicio.getDescripcion()+","+servicio.getRegistro()+","+servicio.getFecha()+","+servicio.getPagado());
+                                myWriterServiciosHabitacion.write(servicio.getNombre()+","+servicio.getPrecio()+","+servicio.getDescripcion()+","+servicio.getRegistro()+","+servicio.getFecha()+","+servicio.isPagado());
                             }
 
                             myWriterServiciosHabitacion.close();
@@ -134,9 +135,9 @@ public class TraductorObject {
 
             for (Tarifa tarifa : listaTarifas) {
                 int anio = tarifa.getAnio();
-                Double[] preciosEstandar = tarifa.getPreciosEstandar();
-                Double[] preciosSuite = tarifa.getPreciosSuite();
-                Double[] preciosDoble = tarifa.getPreciosDoble();
+                Double[] preciosEstandar = tarifa.getEstandar();
+                Double[] preciosSuite = tarifa.getSuite();
+                Double[] preciosDoble = tarifa.getDoble();
 
                 String estandarString = "";
                 String suiteString = "";

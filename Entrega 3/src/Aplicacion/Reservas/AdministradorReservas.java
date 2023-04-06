@@ -30,12 +30,12 @@ public class AdministradorReservas {
         while(parar == false)
         {
             HabitacionBase habitacion = HabitacionesBs.get(i);
-            String id = habitacion.getID();
+            String id = habitacion.getId();
             boolean vista = habitacion.getVista();
             boolean cocina = habitacion.getCocina();
             boolean balcon = habitacion.getBalcon();
             String tipo = habitacion.getTipo();
-            HabitacionReserva HabitacionRs = new HabitacionReserva(id, vista, cocina, balcon, tipo);
+            HabitacionReserva HabitacionRs = new HabitacionReserva(id, vista, cocina, balcon, tipo,null);
             HabitacionesRs.add(HabitacionRs);
             enrutadorPrincipal.modificarEstadoOcupado(id,fechainicial,fechafinal,true);
             capacidad += habitacion.getCapacidad();

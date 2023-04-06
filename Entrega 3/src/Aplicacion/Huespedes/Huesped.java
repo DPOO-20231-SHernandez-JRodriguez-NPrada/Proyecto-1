@@ -8,11 +8,11 @@ public class Huesped {
     private String nombre;
     private String documento;
     private String correo;
-    private int celular;
+    private String celular;
     private ArrayList<Servicio> servicios;
      //si es false, su lista de acompanantes deberia ser vacia, pero que este vacia no significa que sea un acompañante, puede estar solo
 
-    public Huesped(String nombre, String doc, String correo, int celular){
+    public Huesped(String nombre, String doc, String correo, String celular,ArrayList<Servicio> servicios){
         this.nombre=nombre;
         documento=doc;
         this.correo=correo;
@@ -44,11 +44,11 @@ public class Huesped {
         this.correo = correo;
     }
 
-    public int getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public void setCelular(int celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 

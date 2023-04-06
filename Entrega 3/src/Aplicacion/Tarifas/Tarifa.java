@@ -1,6 +1,5 @@
 package Aplicacion.Tarifas;
 
-import java.util.Arrays;
 
 public class Tarifa {
     private Double[] preciosEstandar;

@@ -14,8 +14,9 @@ public class AdministradorHuespedes {
     public void AsignarHuespedes(HashMap<String, Huesped> datosHuespedes) {
     }
 
-    public Huesped crearHuesped(String nombre, String doc, String correo, int celular){ // se crea el huesped principal
-        Huesped huesped = new Huesped(nombre, doc, correo, celular);
+    public Huesped crearHuesped(String nombre, String doc, String correo, String celular){ // se crea el huesped principal
+        ArrayList<Servicio> servicios = new ArrayList<Servicio>();
+        Huesped huesped = new Huesped(nombre, doc, correo, celular,servicios);
         
         try{
         this.hashHuesped.put(doc, huesped);}

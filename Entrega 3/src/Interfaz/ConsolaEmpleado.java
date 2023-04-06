@@ -44,7 +44,8 @@ public class ConsolaEmpleado {
         }
     }
 
-    public void MostrarMenuPrincipal() {
+    public void MostrarMenuPrincipal() 
+    {
         System.out.println(
         """
         1. Crear reserva
@@ -77,7 +78,7 @@ public class ConsolaEmpleado {
         String documento = Input.input("Ingrese el documento del huesped principal");
         String nombre = Input.input("Ingrese el nopmbre del huesped principal");
         String correo = Input.input("Ingrese el correo del huesped principal");
-        int celular = Integer.parseInt(Input.input("Ingrese el documento del huesped principal"));
+        String celular = Input.input("Ingrese el documento del huesped principal");
 
         int personasEsperadas = Integer.parseInt(Input.input("Ingrese el numero de personas que se esperan"));
         

@@ -10,10 +10,11 @@ public class ConsolaAdmin extends ConsolaEmpleado
 {
 
     public ConsolaAdmin(InterfazPrincipal padreInterfaz) {
-
-        public void MostrarMenuPrincipal() 
+        super(padreInterfaz);
+    }
+        public void MostrarMenuPrincipal2() 
         {
-            super.MostrarMenuPrincipal();
+        System.out.println("6. Hacer check out9. Salir");
         }
 
     public void EjecutarOpcion(int numeroOpcion){
@@ -68,5 +69,4 @@ public class ConsolaAdmin extends ConsolaEmpleado
         }
 
     }
-}
 }

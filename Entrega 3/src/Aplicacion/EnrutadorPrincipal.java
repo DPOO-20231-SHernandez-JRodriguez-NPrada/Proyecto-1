@@ -116,7 +116,7 @@ public class EnrutadorPrincipal {
     }
 
 
-    public void CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial, String fechafinal, ArrayList<HabitacionBase> HabitacionesBs, String nombre, String correo, int celular)
+    public void CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial, String fechafinal, ArrayList<HabitacionBase> HabitacionesBs, String nombre, String correo, String celular)
     {
         Huesped huesped = adminHuespedes.crearHuesped(nombre, documento, correo, celular);
        adminReservas.CrearReserva(documento,estadoReserva,personasEsperadas,fechainicial,fechafinal,HabitacionesBs, huesped);
@@ -164,7 +164,7 @@ public class EnrutadorPrincipal {
     {
         adminHabitaciones.modificarEstadoOcupado(id, fechainicial, fechafinal, cambio);
     }
-    public Huesped crearHuesped(String nombre, String doc, String correo, int celular)
+    public Huesped crearHuesped(String nombre, String doc, String correo, String celular)
     {
         Huesped huesped = adminHuespedes.crearHuesped(nombre, doc, correo, celular);
         return huesped;

@@ -33,7 +33,7 @@ public class HabitacionReserva {
     }
 
 
-    public boolean isVista() {
+    public boolean getVista() {
       return vista;
     }
 
@@ -43,7 +43,7 @@ public class HabitacionReserva {
     }
 
 
-    public boolean isCocina() {
+    public boolean getCocina() {
       return cocina;
     }
 
@@ -53,7 +53,7 @@ public class HabitacionReserva {
     }
 
 
-    public boolean isBalcon() {
+    public boolean getBalcon() {
       return balcon;
     }
 
@@ -73,11 +73,13 @@ public class HabitacionReserva {
     }
 
 
-    public HabitacionReserva(String id, boolean vista, boolean cocina, boolean balcon, String tipo) {
+    public HabitacionReserva(String id, boolean vista, boolean cocina, boolean balcon, String tipo, ArrayList<Servicio> servicios) 
+    {
 		this.id = id;
 		this.vista = vista;
 		this.cocina = cocina;
 		this.balcon = balcon;
 		this.tipo = tipo;
+    this.servicios = servicios;
     }
 }

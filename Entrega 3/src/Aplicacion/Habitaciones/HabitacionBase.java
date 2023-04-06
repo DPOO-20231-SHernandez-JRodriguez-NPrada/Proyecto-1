@@ -12,6 +12,21 @@ public class HabitacionBase {
     private Boolean cocina;
     private Boolean balcon;
     private Boolean vista;
+    public ArrayList<Integer> getCamas() {
+        return camas;
+    }
+
+    public void setCamas(ArrayList<Integer> camas) {
+        this.camas = camas;
+    }
+
+    public int getAnio() {
+        return anio;
+    }
+
+    public void setAnio(int anio) {
+        this.anio = anio;
+    }
     private ArrayList<Integer> camas;
     private int anio;
     
