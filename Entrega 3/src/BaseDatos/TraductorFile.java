@@ -298,7 +298,7 @@ public class TraductorFile {
 
                 ArrayList<HabitacionReserva> hReserva = habitacionesReserva.get(documento);
 
-                Reserva reserva = new Reserva(documento, estadoReserva, PersonasEsperadas, fechaLlegada, fechaSalida, grupo, hReserva);
+                Reserva reserva = new Reserva(documento, estadoReserva, Integer.parseInt(PersonasEsperadas), fechaLlegada, fechaSalida, hReserva, grupo);
 
                 reservas.put(documento, reserva);
             }
