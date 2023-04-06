@@ -28,9 +28,9 @@ public class TraductorFile {
         HashMap<String, String> datosLogin = new HashMap<String, String>();
         try {
             scannerLectura = new Scanner(datosLoginFile);
-            scannerLectura.next();
-            while(scannerLectura.hasNext()){
-                String[] datos = scannerLectura.next().split(",");
+            scannerLectura.nextLine();
+            while(scannerLectura.hasNextLine()){
+                String[] datos = scannerLectura.nextLine().split(",");
                 String nombre = datos[0];
                 String contraseniaTipoUsuario = datos[1];
                 datosLogin.put(nombre, contraseniaTipoUsuario);
@@ -50,9 +50,9 @@ public class TraductorFile {
         ArrayList<ServicioBase> serviciosBase = new ArrayList<ServicioBase>();
         try {
             scannerLectura = new Scanner(archivoServiciosBase);
-            scannerLectura.next();
-            while(scannerLectura.hasNext()){
-                String[] datos = scannerLectura.next().split(",");
+            scannerLectura.nextLine();
+            while(scannerLectura.hasNextLine()){
+                String[] datos = scannerLectura.nextLine().split(",");
                 String nombre = datos[0];
                 Double precio = Double.parseDouble(datos[1]);
                 String descripcion = datos[2];
@@ -79,9 +79,9 @@ public class TraductorFile {
         
         try {
             scannerLectura = new Scanner(ocupacionHabitacionesFile);
-            scannerLectura.next();
+            scannerLectura.nextLine();
             while(scannerLectura.hasNext()){
-                String[] datos = scannerLectura.next().split(",");
+                String[] datos = scannerLectura.nextLine().split(",");
                 String id = datos[0];
                 String anio = datos[1];
                 String ocupacionString = datos[2];
@@ -98,9 +98,9 @@ public class TraductorFile {
 
         try {
             scannerLectura = new Scanner(habitacionesBaseFile);
-            scannerLectura.next();
-            while(scannerLectura.hasNext()){
-                String[] datos = scannerLectura.next().split(",");
+            scannerLectura.nextLine();
+            while(scannerLectura.hasNextLine()){
+                String[] datos = scannerLectura.nextLine().split(",");
                 String ubicacion = datos[0];
                 int capacidad = Integer.parseInt(datos[1]);
                 int capacidadMax = Integer.parseInt(datos[2]);
@@ -138,9 +138,9 @@ public class TraductorFile {
         ArrayList<Producto> menu = new ArrayList<Producto>();
         try {
             scannerLectura = new Scanner(menuFile);
-            scannerLectura.next();
-            while(scannerLectura.hasNext()){
-                String[] datos = scannerLectura.next().split(",");
+            scannerLectura.nextLine();
+            while(scannerLectura.hasNextLine()){
+                String[] datos = scannerLectura.nextLine().split(",");
                 String nombre = datos[0];
                 Double precio = Double.parseDouble(datos[1]);
                 String horaInicio = datos[2];
@@ -173,18 +173,18 @@ public class TraductorFile {
             for (final File sHuespedFile : datosServiciosHuespedesFolder.listFiles()) {
                 scannerLectura = new Scanner(sHuespedFile);
 
-                scannerLectura.next();
-                String[] datos = scannerLectura.next().split(",");
+                scannerLectura.nextLine();
+                String[] datos = scannerLectura.nextLine().split(",");
 
                 String nombre = datos[0];
                 String documento = datos[1];
 
                 ArrayList<Servicio> servicios = new ArrayList<Servicio>();
 
-                scannerLectura.next();
+                scannerLectura.nextLine();
 
-                while(scannerLectura.hasNext()){
-                    String[] datosServicio = scannerLectura.next().split(",");
+                while(scannerLectura.hasNextLine()){
+                    String[] datosServicio = scannerLectura.nextLine().split(",");
                     String nombreServicio = datosServicio[0];
                     double precio = Double.parseDouble(datosServicio[1]);
                     String descripcion = datosServicio[2];
@@ -208,8 +208,8 @@ public class TraductorFile {
             for (final File sHabitacionFile : datosServiciosHabitacionesFolder.listFiles()) {
                 scannerLectura = new Scanner(sHabitacionFile);
 
-                scannerLectura.next();
-                String[] datos = scannerLectura.next().split(",");
+                scannerLectura.nextLine();
+                String[] datos = scannerLectura.nextLine().split(",");
 
                 String documento = datos[0];
                 String idHabitacion = datos[1];
@@ -220,10 +220,10 @@ public class TraductorFile {
 
                 ArrayList<Servicio> servicios = new ArrayList<Servicio>();
 
-                scannerLectura.next();
+                scannerLectura.nextLine();
 
-                while(scannerLectura.hasNext()){
-                    String[] datosServicio = scannerLectura.next().split(",");
+                while(scannerLectura.hasNextLine()){
+                    String[] datosServicio = scannerLectura.nextLine().split(",");
                     String nombreServicio = datosServicio[0];
                     double precio = Double.parseDouble(datosServicio[1]);
                     String descripcion = datosServicio[2];
@@ -257,13 +257,13 @@ public class TraductorFile {
 
         try {
             scannerLectura = new Scanner(datosReservasYHuespedesFile);
-            scannerLectura.next();
-            scannerLectura.next();
-            scannerLectura.next();
-            scannerLectura.next();
+            scannerLectura.nextLine();
+            scannerLectura.nextLine();
+            scannerLectura.nextLine();
+            scannerLectura.nextLine();
 
-            while(scannerLectura.hasNext()){
-                String[] datosReserva = scannerLectura.next().split(",");
+            while(scannerLectura.hasNextLine()){
+                String[] datosReserva = scannerLectura.nextLine().split(",");
 
                 String documento = datosReserva[0];
                 String estadoReserva = datosReserva[1];
@@ -273,7 +273,8 @@ public class TraductorFile {
 
                 ArrayList<Huesped> grupo = new ArrayList<Huesped>();
 
-                String currLine = scannerLectura.next();
+                String currLine = scannerLectura.nextLine();
+                currLine = scannerLectura.nextLine();
 
                 while(currLine.split(",").length != 1){
                     String[] datosHuesped = currLine.split(",");
@@ -293,7 +294,7 @@ public class TraductorFile {
                         huespedes.put(documentoHuesped, huesped);
                     }
 
-                    scannerLectura.next();
+                    currLine = scannerLectura.nextLine();
                 }
 
                 ArrayList<HabitacionReserva> hReserva = habitacionesReserva.get(documento);
@@ -323,11 +324,11 @@ public class TraductorFile {
                 Double[] preciosSuite = new Double[365];
                 Double[] preciosDoble = new Double[365];
 
-                scannerLectura.next();
-                int anio = Integer.parseInt(scannerLectura.next());
-                String[] estandarString = scannerLectura.next().split(",");
-                String[] suiteString = scannerLectura.next().split(",");
-                String[] dobleString = scannerLectura.next().split(",");
+                scannerLectura.nextLine();
+                int anio = Integer.parseInt(scannerLectura.nextLine());
+                String[] estandarString = scannerLectura.nextLine().split(",");
+                String[] suiteString = scannerLectura.nextLine().split(",");
+                String[] dobleString = scannerLectura.nextLine().split(",");
 
                 for (int i = 0; i < estandarString.length; i++) {
                     preciosEstandar[i] = Double.parseDouble(estandarString[i]);

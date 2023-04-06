@@ -23,17 +23,6 @@ public class ControladorBaseDatos {
     private ArrayList<Tarifa> datosTarifas;
     private HashMap<String, ArrayList<Factura>> datosFacturas;
 
-    public static void main(String[] args) {
-        ControladorBaseDatos controlador = new ControladorBaseDatos();
-        try {
-            HashMap<String, String> login = controlador.CargarDatosLogin();
-            System.out.println(login);
-        } catch (Exception e) {
-            System.err.println(e.getMessage());
-        }
-        
-    }
-
     public ControladorBaseDatos() {
         this.traductor = new TraductorFile();
         this.traductorObject = new TraductorObject();
