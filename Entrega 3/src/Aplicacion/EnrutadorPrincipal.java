@@ -6,7 +6,6 @@ import java.util.HashMap;
 
 import Aplicacion.Habitaciones.AdministradorHabitaciones;
 import Aplicacion.Habitaciones.HabitacionBase;
-import Aplicacion.Habitaciones.HabitacionReserva;
 import Aplicacion.Huespedes.AdministradorHuespedes;
 import Aplicacion.Huespedes.Huesped;
 import Aplicacion.Reservas.AdministradorReservas;
