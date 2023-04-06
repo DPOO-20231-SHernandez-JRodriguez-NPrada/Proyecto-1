@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import Aplicacion.Habitaciones.AdministradorHabitaciones;
 import Aplicacion.Habitaciones.HabitacionBase;
+import Aplicacion.Habitaciones.HabitacionReserva;
 import Aplicacion.Huespedes.AdministradorHuespedes;
 import Aplicacion.Huespedes.Huesped;
 import Aplicacion.Reservas.AdministradorReservas;
@@ -116,10 +117,11 @@ public class EnrutadorPrincipal {
     }
 
 
-    public void CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial, String fechafinal, ArrayList<HabitacionBase> HabitacionesBs, String nombre, String correo, String celular)
+    public double CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial, String fechafinal, ArrayList<HabitacionBase> HabitacionesBs, String nombre, String correo, String celular)
     {
         Huesped huesped = adminHuespedes.crearHuesped(nombre, documento, correo, celular);
-       adminReservas.CrearReserva(documento,estadoReserva,personasEsperadas,fechainicial,fechafinal,HabitacionesBs, huesped);
+       double precio = adminReservas.CrearReserva(documento,estadoReserva,personasEsperadas,fechainicial,fechafinal,HabitacionesBs, huesped);
+        return precio;
     }
     public String VerReserva(String documento)
     {
@@ -168,5 +170,10 @@ public class EnrutadorPrincipal {
     {
         Huesped huesped = adminHuespedes.crearHuesped(nombre, doc, correo, celular);
         return huesped;
+    }
+    public double calcularPrecio(Reserva datosReserva)
+    {
+        double precio = adminTarifas.CalcularEstadia(datosReserva);
+        return precio;
     }
 }

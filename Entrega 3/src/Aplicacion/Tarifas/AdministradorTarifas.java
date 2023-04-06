@@ -6,6 +6,11 @@ import java.time.*;
 
 import java.util.ArrayList;
 
+import javax.swing.plaf.TreeUI;
+
+import Aplicacion.Habitaciones.HabitacionReserva;
+import Aplicacion.Reservas.Reserva;
+
 public class AdministradorTarifas {
     private ArrayList<Tarifa> tarifas;
 
@@ -63,6 +68,121 @@ public class AdministradorTarifas {
         }
 
         
+    }
+    public double CalcularEstadia(Reserva reserva)
+    {   
+        int aniototal = 1;
+        double precio = 0.0;
+        try {
+        String fechaini = reserva.getFechaIni();
+        String fechafin = reserva.getFechaFin();
+
+        ArrayList<HabitacionReserva> HabitacionRes  = reserva.getHabitacionesReservadas();
+
+
+        LocalDate fechai= LocalDate.parse(fechaini, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate fechaf= LocalDate.parse(fechafin, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+
+        String anio = Integer.toString(fechai.getYear());
+        String aniofinal = Integer.toString(fechaf.getYear());
+        if(anio.equals(aniofinal)==false)
+        {
+            aniototal = 2;
+        }
+        String fechaInicio = "01/01/"+anio;
+        LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        int diasDeReserva = (int) ChronoUnit.DAYS.between(fecha, fechaf); 
+        int posArreglo = (int) ChronoUnit.DAYS.between(fecha, fechai);
+        for(int i=0; i<=HabitacionRes.size();i++)
+        {
+            HabitacionReserva habitacion = HabitacionRes.get(i);
+            String tipo = habitacion.getTipo();
+            Double[] lista = new Double[365];
+            Double[] posiblelista = new Double[365];
+            if (habitacion.getCocina() == true)
+            {
+                precio += 5;
+            }
+            if (habitacion.getBalcon() == true)
+            {
+                precio += 5;
+            }
+            if (habitacion.getVista() == true)
+            {
+                precio += 5;
+            }
+
+            while(aniototal > 0)
+            {
+                for (Tarifa tarifa : this.tarifas)
+                {
+                    int anio1 = tarifa.getAnio();
+                    if (Integer.parseInt(anio)==anio1)
+                    {
+                        if (tipo.equals("Estandar"))
+                        { 
+                            lista=tarifa.getEstandar();
+                            aniototal -=1;
+                        } 
+                        else if (tipo.equals("Suite"))
+                        {
+                            lista=tarifa.getSuite();
+                            aniototal -=1;
+                        } 
+                        else 
+                        {
+                            lista=tarifa.getDoble();
+                            aniototal -=1;
+                        }
+                    }
+                    int anio2 = tarifa.getAnio();
+                    if (Integer.parseInt(aniofinal)==anio2)
+                    {
+                        if (tipo.equals("Estandar"))
+                        { 
+                            posiblelista=tarifa.getEstandar();
+                            aniototal -=1;
+                        } 
+                        else if (tipo.equals("Suite"))
+                        {
+                            posiblelista=tarifa.getSuite();
+                            aniototal -=1;
+                        } 
+                        else 
+                        {
+                            posiblelista=tarifa.getDoble();
+                            aniototal -=1;
+                        }
+                    }
+                }
+            }
+            if(posArreglo+diasDeReserva<=365)
+            {
+                for(int x=posArreglo;x<=posArreglo+diasDeReserva;x++)
+                {
+                    precio += lista[x];
+                }
+            }
+            else
+            {   
+                int limite = 365-posArreglo;
+                int limite2 = diasDeReserva - limite;
+                for(int x=posArreglo;x<=posArreglo + limite;x++)
+                {
+                    precio += lista[x];
+                }
+
+                for(int a=0;a<=limite2;a++)
+                {
+                    precio += posiblelista[a];
+                }
+            }
+        }   
+
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
+        return precio;
     }
     
 }

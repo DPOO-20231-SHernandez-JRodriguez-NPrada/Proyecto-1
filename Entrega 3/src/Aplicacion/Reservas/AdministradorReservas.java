@@ -21,7 +21,7 @@ public class AdministradorReservas {
         this.datosReservas = datosReservas;
     }
     
-    public void CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial, String fechafinal, ArrayList<HabitacionBase> HabitacionesBs,Huesped huesped)
+    public double CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial, String fechafinal, ArrayList<HabitacionBase> HabitacionesBs,Huesped huesped)
     {
         ArrayList<HabitacionReserva> HabitacionesRs = new ArrayList<HabitacionReserva>();
         boolean parar = false;
@@ -49,8 +49,12 @@ public class AdministradorReservas {
             }
             i++;
         }
-        Reserva datosReserva = new Reserva(documento, estadoReserva, personasEsperadas, fechainicial, fechafinal, HabitacionesRs, huesped);
+        Reserva datosReserva = new Reserva(documento, estadoReserva, personasEsperadas, fechainicial, fechafinal, HabitacionesRs);
+        ArrayList<Huesped> grupo = datosReserva.getGrupo();
+        grupo.add(huesped);
+        double precio = enrutadorPrincipal.calcularPrecio(datosReserva);
         datosReservas.put(documento, datosReserva);
+        return precio;
     }
 
     public String VerReserva(String documento)

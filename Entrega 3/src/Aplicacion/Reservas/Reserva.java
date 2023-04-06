@@ -15,24 +15,14 @@ public class Reserva {
     ArrayList<HabitacionReserva> habitacionesReservadas;
 	ArrayList<Huesped> grupo;
 
-    public Reserva(String documento, String estadoReserva, int personasEsperadas, String fechaIni, String fechaFin, ArrayList<HabitacionReserva> habitacionesReservadas,Huesped huesped) {
+	public Reserva(String documento, String estadoReserva, int personasEsperadas, String fechaIni, String fechaFin, ArrayList<HabitacionReserva> habitacionesReservadas) {
 		this.documento = documento;
 		this.estadoReserva = estadoReserva;
 		this.personasEsperadas = personasEsperadas;
 		this.fechaIni = fechaIni;
 		this.fechaFin = fechaFin;
 		this.habitacionesReservadas = habitacionesReservadas;
-		this.grupo.add(huesped);
-    }
-
-	public Reserva(String documento, String estadoReserva, int personasEsperadas, String fechaIni, String fechaFin, ArrayList<HabitacionReserva> habitacionesReservadas, ArrayList<Huesped> huespedes) {
-		this.documento = documento;
-		this.estadoReserva = estadoReserva;
-		this.personasEsperadas = personasEsperadas;
-		this.fechaIni = fechaIni;
-		this.fechaFin = fechaFin;
-		this.habitacionesReservadas = habitacionesReservadas;
-		this.grupo = huespedes;
+		this.grupo = new ArrayList<Huesped>();
     }
 
     public String getDocumento() {
