@@ -2,13 +2,15 @@ package Aplicacion.Tarifas;
 
 
 public class Tarifa {
+    
     private Double[] preciosEstandar;
     private Double[] preciosSuite;
     private Double[] preciosDoble;
     private int anio;
 
     public Tarifa(int anio, Double[] estandar,Double[] suite, Double[] doble){
-        this.anio=anio;
+
+        this.anio = anio;
         this.preciosEstandar = estandar;
         this.preciosSuite = suite;
         this.preciosSuite = doble;  
