@@ -12,7 +12,7 @@ public class ConsolaAdmin extends ConsolaEmpleado
     public ConsolaAdmin(InterfazPrincipal padreInterfaz) {
         super(padreInterfaz);
     }
-        public void MostrarMenuPrincipal2() 
+        public void MostrarMenuPrincipal() 
         {
             System.out.println(
                 """
@@ -92,10 +92,10 @@ public class ConsolaAdmin extends ConsolaEmpleado
         String p = reader.readLine().trim();
         Double precio = Double.parseDouble(p);
 
-        System.out.print("Ingrese la fecha de inicio con formato dd:MM:yyyy: ");
+        System.out.print("Ingrese la fecha de inicio con formato dd/MM/yyyy: ");
         String finicio = reader.readLine().trim();
 
-        System.out.print("Ingrese la fecha final con formato dd:MM:yyyy: ");
+        System.out.print("Ingrese la fecha final con formato dd/MM/yyyy: ");
         String ffinal = reader.readLine().trim();
 
         ArrayList<String> dias= new ArrayList<String>();

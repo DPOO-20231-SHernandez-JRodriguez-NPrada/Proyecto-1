@@ -18,13 +18,13 @@ public class AdministradorTarifas {
         this.tarifas = datosTarifas;
     }
 
-    public void cambiarTarifa(String tipo, int anio, Double precio, String finicio, String ffinal, ArrayList<String> dias){ //las fechas deben estar en formato dd:MM:yyyy
+    public void cambiarTarifa(String tipo, int anio, Double precio, String finicio, String ffinal, ArrayList<String> dias){ //las fechas deben estar en formato dd/MM/yyyy
         try{
         String fechaInicio = "01/01/"+anio; //transforma año al 1 de enero de ese anio
-        LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd:MM:yyyy")); //Pasa de string a una fecha. Esta es la fecha de 1 de enero de ese año
+        LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd/MM/yyyy")); //Pasa de string a una fecha. Esta es la fecha de 1 de enero de ese año
 		//DayOfWeek diaSemana = fecha.getDayOfWeek(); Obtiene el dia de la semana que le corresponde a esa fecha
-        LocalDate fechai= LocalDate.parse(finicio, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
-        LocalDate fechaf= LocalDate.parse(ffinal, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
+        LocalDate fechai= LocalDate.parse(finicio, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate fechaf= LocalDate.parse(ffinal, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         int diasEntreFechas = (int) ChronoUnit.DAYS.between(fecha, fechaf); //dias que pasan entre 1 de enero y el final, para saber cuantas veces hacer el recorrido
         int diasEntreFechas2 = (int) ChronoUnit.DAYS.between(fecha, fechai); //dias que pasan entre 1 de enero y el dia de inicio, para saber en que posicion esta ese dia
         Double[] lista = new Double[365];
@@ -80,8 +80,8 @@ public class AdministradorTarifas {
         ArrayList<HabitacionReserva> HabitacionRes  = reserva.getHabitacionesReservadas();
 
 
-        LocalDate fechai= LocalDate.parse(fechaini, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
-        LocalDate fechaf= LocalDate.parse(fechafin, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
+        LocalDate fechai= LocalDate.parse(fechaini, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate fechaf= LocalDate.parse(fechafin, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
         String anio = Integer.toString(fechai.getYear());
         String aniofinal = Integer.toString(fechaf.getYear());
@@ -90,7 +90,7 @@ public class AdministradorTarifas {
             aniototal = 2;
         }
         String fechaInicio = "01/01/"+anio;
-        LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
+        LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         int diasDeReserva = (int) ChronoUnit.DAYS.between(fecha, fechaf); 
         int posArreglo = (int) ChronoUnit.DAYS.between(fecha, fechai);
         for(int i=0; i<=HabitacionRes.size();i++)

@@ -82,8 +82,8 @@ public class AdministradorReservas {
         ArrayList<HabitacionReserva> habitaciones = reserva.getHabitacionesReservadas();
         String fechaini =  reserva.getFechaIni();
         String fechafin =  reserva.getFechaFin();
-        LocalDate fechainires= LocalDate.parse(fechaini, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
-        LocalDate fechactualLC= LocalDate.parse(fechactual, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
+        LocalDate fechainires= LocalDate.parse(fechaini, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate fechactualLC= LocalDate.parse(fechactual, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         int diasEntreFechasf = (int) ChronoUnit.HOURS.between(fechactualLC, fechainires);
         if(diasEntreFechasf>48)
             for(int i = 0; i<=habitaciones.size();i++)
