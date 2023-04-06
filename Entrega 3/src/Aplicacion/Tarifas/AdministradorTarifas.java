@@ -18,22 +18,22 @@ public class AdministradorTarifas {
         this.tarifas = datosTarifas;
     }
 
-    public void cambiarTarifa(String tipo, int anio, Double precio, String finicio, String ffinal, ArrayList<String> dias){ //las fechas deben estar en formato dd/MM/YYYY
+    public void cambiarTarifa(String tipo, int anio, Double precio, String finicio, String ffinal, ArrayList<String> dias){ //las fechas deben estar en formato dd:MM:yyyy
         try{
         String fechaInicio = "01/01/"+anio; //transforma año al 1 de enero de ese anio
-        LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd/MM/yyyy")); //Pasa de string a una fecha. Esta es la fecha de 1 de enero de ese año
+        LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd:MM:yyyy")); //Pasa de string a una fecha. Esta es la fecha de 1 de enero de ese año
 		//DayOfWeek diaSemana = fecha.getDayOfWeek(); Obtiene el dia de la semana que le corresponde a esa fecha
-        LocalDate fechai= LocalDate.parse(finicio, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        LocalDate fechaf= LocalDate.parse(ffinal, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate fechai= LocalDate.parse(finicio, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
+        LocalDate fechaf= LocalDate.parse(ffinal, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
         int diasEntreFechas = (int) ChronoUnit.DAYS.between(fecha, fechaf); //dias que pasan entre 1 de enero y el final, para saber cuantas veces hacer el recorrido
         int diasEntreFechas2 = (int) ChronoUnit.DAYS.between(fecha, fechai); //dias que pasan entre 1 de enero y el dia de inicio, para saber en que posicion esta ese dia
         Double[] lista = new Double[365];
         for (Tarifa tarifa : this.tarifas){ //recorrido sobre las tarifas para buscar la del año escogido
             int anio1= tarifa.getAnio();
             if (anio==anio1){
-                if (tipo.equals("Estandar")){ //Estos condicionales se encargan de buscar la lista con el tipo de habitacion para hacer el cambio
+                if (tipo.equals("estandar")){ //Estos condicionales se encargan de buscar la lista con el tipo de habitacion para hacer el cambio
                     lista=tarifa.getEstandar();
-                } else if (tipo.equals("Suite")){
+                } else if (tipo.equals("suite")){
                     lista=tarifa.getSuite();
                 } else { //Por la forma en la que estan los if, si tipo no es Estandar o Suite, entrara siempre a las tarifas de Doble
                     lista=tarifa.getDoble();
@@ -54,9 +54,9 @@ public class AdministradorTarifas {
         for (Tarifa tarifa : this.tarifas){ //recorrido sobre las tarifas para buscar la del año escogido
             int anio1= tarifa.getAnio();
             if (anio==anio1){
-                if (tipo.equals("Estandar")){ //Estos condicionales se encargan de buscar la lista con el tipo de habitacion para hacer el cambio
+                if (tipo.equals("estandar")){ //Estos condicionales se encargan de buscar la lista con el tipo de habitacion para hacer el cambio
                     tarifa.setEstandar(lista);
-                } else if (tipo.equals("Suite")){
+                } else if (tipo.equals("suite")){
                     tarifa.setSuite(lista);
                 } else { //Por la forma en la que estan los if, si tipo no es Estandar o Suite, entrara siempre a las tarifas de Doble
                     tarifa.setDoble(lista);
@@ -80,8 +80,8 @@ public class AdministradorTarifas {
         ArrayList<HabitacionReserva> HabitacionRes  = reserva.getHabitacionesReservadas();
 
 
-        LocalDate fechai= LocalDate.parse(fechaini, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        LocalDate fechaf= LocalDate.parse(fechafin, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate fechai= LocalDate.parse(fechaini, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
+        LocalDate fechaf= LocalDate.parse(fechafin, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
 
         String anio = Integer.toString(fechai.getYear());
         String aniofinal = Integer.toString(fechaf.getYear());
@@ -90,7 +90,7 @@ public class AdministradorTarifas {
             aniototal = 2;
         }
         String fechaInicio = "01/01/"+anio;
-        LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
         int diasDeReserva = (int) ChronoUnit.DAYS.between(fecha, fechaf); 
         int posArreglo = (int) ChronoUnit.DAYS.between(fecha, fechai);
         for(int i=0; i<=HabitacionRes.size();i++)
@@ -119,12 +119,12 @@ public class AdministradorTarifas {
                     int anio1 = tarifa.getAnio();
                     if (Integer.parseInt(anio)==anio1)
                     {
-                        if (tipo.equals("Estandar"))
+                        if (tipo.equals("estandar"))
                         { 
                             lista=tarifa.getEstandar();
                             aniototal -=1;
                         } 
-                        else if (tipo.equals("Suite"))
+                        else if (tipo.equals("suite"))
                         {
                             lista=tarifa.getSuite();
                             aniototal -=1;
@@ -138,12 +138,12 @@ public class AdministradorTarifas {
                     int anio2 = tarifa.getAnio();
                     if (Integer.parseInt(aniofinal)==anio2)
                     {
-                        if (tipo.equals("Estandar"))
+                        if (tipo.equals("estandar"))
                         { 
                             posiblelista=tarifa.getEstandar();
                             aniototal -=1;
                         } 
-                        else if (tipo.equals("Suite"))
+                        else if (tipo.equals("suite"))
                         {
                             posiblelista=tarifa.getSuite();
                             aniototal -=1;
@@ -180,7 +180,7 @@ public class AdministradorTarifas {
         }   
 
         } catch (Exception e) {
-            // TODO: handle exception
+            e.printStackTrace();
         }
         return precio;
     }

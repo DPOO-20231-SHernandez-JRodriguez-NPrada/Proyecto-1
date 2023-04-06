@@ -12,6 +12,7 @@ import Aplicacion.Reservas.AdministradorReservas;
 import Aplicacion.Reservas.Reserva;
 import Aplicacion.Servicios.AdministradorServicios;
 import Aplicacion.Servicios.Producto;
+import Aplicacion.Servicios.Servicio;
 import Aplicacion.Servicios.ServicioBase;
 import Aplicacion.Tarifas.AdministradorTarifas;
 import Aplicacion.Tarifas.Tarifa;
@@ -19,6 +20,7 @@ import BaseDatos.ControladorBaseDatos;
 import Facturas.AdministradorFacturas;
 import Login.AdministradorLogin;
 import Facturas.Factura;
+
 
 public class EnrutadorPrincipal {
     
@@ -148,9 +150,11 @@ public class EnrutadorPrincipal {
         double precio = adminServicios.precioProducto(nombre);
         return precio;
     }
-    public void HacerCheckin()
+    public void HacerCheckIn(String documentoPrincipal, String documento, String nombre, String correo, String celular)
     {
-        
+        Huesped huesped = adminHuespedes.crearHuesped(nombre, documento, correo, celular);
+        Reserva reserva = adminReservas.getReserva(documentoPrincipal);
+        checkInOut.CheckIn(reserva, huesped);
     }
     public void HacerCheckout()
     {
@@ -174,5 +178,23 @@ public class EnrutadorPrincipal {
     {
         double precio = adminTarifas.CalcularEstadia(datosReserva);
         return precio;
+    }
+
+    public HashMap<String, ArrayList<Servicio>> HacerCheckOut(String documento,
+            boolean confirmarPago) {
+        Reserva reserva = adminReservas.getReserva(documento);
+        return checkInOut.CheckOut(reserva, confirmarPago);
+    }
+
+    public void facturarReserva(String documento){
+        Reserva reserva = adminReservas.getReserva(documento);
+        ArrayList<Huesped> huespedes = reserva.getGrupo();
+
+        adminFacturas.CrearFacturaLiderGrupo(reserva);
+
+        for (Huesped huesped : huespedes) {
+            adminFacturas.CrearFacturaCliente(huesped);
+        }
+        
     }
 }

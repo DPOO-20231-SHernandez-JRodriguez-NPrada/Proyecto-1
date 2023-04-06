@@ -1,9 +1,10 @@
 package Interfaz;
 import java.util.ArrayList;
-
+import java.util.HashMap;
 
 import Aplicacion.Input;
 import Aplicacion.Habitaciones.HabitacionBase;
+import Aplicacion.Servicios.Servicio;
 
 public class ConsolaEmpleado {
 
@@ -60,9 +61,44 @@ public class ConsolaEmpleado {
 
     public void EjecutarOpcion(int numeroOpcion)
     {
-        if(numeroOpcion == 1)
-        {
-            CrearReserva();
+        switch (numeroOpcion) {
+            case 1:
+                CrearReserva();
+                
+                break;
+
+            case 2:
+                VerReserva();
+
+                break;
+
+            case 3:
+                EliminarReserva();
+
+                break;
+
+            case 4:
+                AñadirServicio();
+
+                break;
+
+            case 5:
+                HacerCheckIn();
+
+                break;
+
+            case 6:
+                HacerCheckOut();
+
+                break;
+
+            case 9:
+                System.out.println("Saliendo del programa");
+
+                break;
+        
+            default:
+                break;
         }
     }
 
@@ -190,12 +226,59 @@ public class ConsolaEmpleado {
         padreInterfaz.AñadirServicio(documento,servicio,descripcion,fecha,pagado,precio);
 
     }
-    public void HacerCheckin()
+
+    public void HacerCheckIn()
     {
+        boolean flag = true;
+
+        String documentoPrincipal = Input.input("Ingrese el documento del huesped principal");
+
+        while(flag == true)
+        {
+            System.out.println("Ingrese los siguientes datos para hacer el check in");
+            String documento = Input.input("Ingrese el documento de la persona");
+            String nombre = Input.input("Ingrese el nombre de la persona");
+            String correo = Input.input("Ingrese el correo de la persona (Escriba un espacio si no tiene)");
+            String celular = Input.input("Ingrese el celular de la persona (Escriba un espacio si no tiene)");
+            padreInterfaz.HacerCheckIn(documentoPrincipal,documento,nombre,correo,celular);
+            String continuar = Input.input("Si desea hacer el check in de otra persona escriba continuar. Si desea salir escriba salir");
+            if (continuar.equals("salir"))
+            {
+                flag = false;
+            }
+        }
         
     }
-    public void HacerCheckout()
+    
+    public void HacerCheckOut()
     {
+        System.out.println("Ingrese los siguientes datos para hacer el check out");
+        String documento = Input.input("Ingrese el documento del huesped principal");
+
+        HashMap<String, ArrayList<Servicio>> servicosPorPagar = padreInterfaz.HacerCheckOut(documento, false);
+
+        if(servicosPorPagar.size() != 0){
+            System.out.println("Los servicios por pagar son: ");
+            for (String key : servicosPorPagar.keySet()) {
+                System.out.println("Servicios: " + key);
+                for (Servicio servicio : servicosPorPagar.get(key)) {
+                    System.out.println("Descripcion: " + servicio.getDescripcion());
+                    System.out.println("Precio: " + servicio.getPrecio());
+                }
+            }
+
+            System.out.println("Confirmar pago servicios...");
+
+            padreInterfaz.HacerCheckOut(documento, true);
+            padreInterfaz.FacturarGrupo(documento);
+
+        }
+
+        System.out.println("El check out se ha realizado con exito");
         
+    }
+
+    public void salirPrograma(){
+
     }
 }

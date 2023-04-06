@@ -1,10 +1,12 @@
 package Interfaz;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import Aplicacion.EnrutadorPrincipal;
 import Aplicacion.Input;
 import Aplicacion.Habitaciones.HabitacionBase;
+import Aplicacion.Servicios.Servicio;
 
 /**
  * InterfazPrincipal
@@ -146,5 +148,20 @@ public class InterfazPrincipal {
     {
                 enrutadorPrincipal.AñadirServicio(documento, servicio, descripcion, fecha, pagado, precio);
     }
+
+    public void HacerCheckIn(String documentoPrincipal, String documento, String nombre, String correo,
+            String celular) {
+                enrutadorPrincipal.HacerCheckIn(documentoPrincipal, documento, nombre, correo, celular);
+    }
+
+    public HashMap<String, ArrayList<Servicio>> HacerCheckOut(String documento, boolean confirmarPago) {
+        return enrutadorPrincipal.HacerCheckOut(documento, confirmarPago);
+    }
+
+    public void FacturarGrupo(String documento) {
+        enrutadorPrincipal.facturarReserva(documento);
+    }
+
+
 
 }

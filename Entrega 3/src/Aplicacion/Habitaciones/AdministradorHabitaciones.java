@@ -19,15 +19,15 @@ public class AdministradorHabitaciones {
 
 
 
-    public void modificarEstadoOcupado(String id, String fechai, String fechaf, Boolean cambio){ //las fechas deben estar en formato dd/MM/YYYY | cambio debe ser True o false dependendiendo si se quiere ocupar o desocupar
+    public void modificarEstadoOcupado(String id, String fechai, String fechaf, Boolean cambio){ //las fechas deben estar en formato dd:MM:yyyy | cambio debe ser True o false dependendiendo si se quiere ocupar o desocupar
         try {
         HabitacionBase habitacion = this.hashHabitaciones.get(id); // se obtiene la habitacion del hashmap
         Boolean[] dias = habitacion.getOcupado(); //se obtiene la lista donde se ven cuando esta ocupada
-        LocalDate finicial= LocalDate.parse(fechai, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        LocalDate ffinal= LocalDate.parse(fechaf, DateTimeFormatter.ofPattern("dd/MM/yyyy")); // se convierten ambos string a fechas
+        LocalDate finicial= LocalDate.parse(fechai, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
+        LocalDate ffinal= LocalDate.parse(fechaf, DateTimeFormatter.ofPattern("dd:MM:yyyy")); // se convierten ambos string a fechas
         int anio = finicial.getYear();
         String primero = "01/01/"+anio;
-        LocalDate fprimero = LocalDate.parse(primero, DateTimeFormatter.ofPattern("dd/MM/yyyy")); //Esta es la fecha de 1 de enero de ese año
+        LocalDate fprimero = LocalDate.parse(primero, DateTimeFormatter.ofPattern("dd:MM:yyyy")); //Esta es la fecha de 1 de enero de ese año
         int diasEntreFechasf = (int) ChronoUnit.DAYS.between(fprimero, ffinal); //dias que pasan entre 1 de enero y el final, para saber cuantas veces hacer el recorrido
         int diasEntreFechasi = (int) ChronoUnit.DAYS.between(fprimero, finicial); //dias que pasan entre 1 de enero y el dia de inicio, para saber en que posicion esta ese dia
         for(int i=diasEntreFechasi; i<=diasEntreFechasf; i++){
@@ -64,17 +64,17 @@ public class AdministradorHabitaciones {
     }
 
 
-    public Boolean verificarDisponibilidad(String id, String fechai, String fechaf){ // Con dos fechas en dd/MM/YYYY verifica si esta vacia en ese rango de fechas
+    public Boolean verificarDisponibilidad(String id, String fechai, String fechaf){ // Con dos fechas en dd:MM:yyyy verifica si esta vacia en ese rango de fechas
         Boolean centinela=false;
         try{
         centinela = true;
         HabitacionBase habitacion = this.hashHabitaciones.get(id); // se obtiene la habitacion del hashmap
         Boolean[] dias = habitacion.getOcupado(); //se obtiene la lista donde se ven cuando esta ocupada
-        LocalDate finicial= LocalDate.parse(fechai, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        LocalDate ffinal= LocalDate.parse(fechaf, DateTimeFormatter.ofPattern("dd/MM/yyyy")); // se convierten ambos string a fechas
+        LocalDate finicial= LocalDate.parse(fechai, DateTimeFormatter.ofPattern("dd:MM:yyyy"));
+        LocalDate ffinal= LocalDate.parse(fechaf, DateTimeFormatter.ofPattern("dd:MM:yyyy")); // se convierten ambos string a fechas
         int anio = finicial.getYear();
         String primero = "01/01/"+anio;
-        LocalDate fprimero = LocalDate.parse(primero, DateTimeFormatter.ofPattern("dd/MM/yyyy")); //Esta es la fecha de 1 de enero de ese año
+        LocalDate fprimero = LocalDate.parse(primero, DateTimeFormatter.ofPattern("dd:MM:yyyy")); //Esta es la fecha de 1 de enero de ese año
         int diasEntreFechasf = (int) ChronoUnit.DAYS.between(fprimero, ffinal); //dias que pasan entre 1 de enero y el final, para saber cuantas veces hacer el recorrido
         int diasEntreFechasi = (int) ChronoUnit.DAYS.between(fprimero, finicial); //dias que pasan entre 1 de enero y el dia de inicio, para saber en que posicion esta ese dia
         
