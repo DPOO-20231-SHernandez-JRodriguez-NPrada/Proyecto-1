@@ -1,5 +1,6 @@
 package Facturas;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class AdministradorFacturas {
@@ -9,7 +10,7 @@ public class AdministradorFacturas {
     
     }
 
-    public void AsignarFacturas(HashMap<String, Factura> datosFacturas) {
+    public void AsignarFacturas(HashMap<String, ArrayList<Factura>> datosFacturas) {
     }
     
 

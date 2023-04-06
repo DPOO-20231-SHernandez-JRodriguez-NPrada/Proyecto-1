@@ -1,4 +1,4 @@
-documento,id,tipo,balcon,vista,cocina,
+documento,id,tipo,balcon,vista,cocina
 1000300585,E.B.501,doble,true,true,false
 nombre,precio,descripcion,registro,fecha,pagado
 Restaurante,53.44,Mojito: 3;Hamburguesa: 2;Nachos: 1,habitacion,29:01:2023,true
