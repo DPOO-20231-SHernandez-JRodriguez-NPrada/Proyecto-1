@@ -1,7 +1,12 @@
 package Interfaz;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import Aplicacion.EnrutadorPrincipal;
 import Aplicacion.Input;
+import Aplicacion.Habitaciones.HabitacionBase;
+import Aplicacion.Servicios.Servicio;
 
 /**
  * InterfazPrincipal
@@ -104,8 +109,63 @@ public class InterfazPrincipal {
         consolaEmpleado.IniciarPrograma();
 
     }
-
+    public EnrutadorPrincipal getEP()
+    {
+        return this.enrutadorPrincipal;
+    }
     private void ComprobarTarifaActual() {
+    }
+
+    protected ArrayList<HabitacionBase> buscarHabitaciones(Boolean cocinaB, Boolean balconB, Boolean vistaB, String fechainicial, String fechafinal, String tipo)
+    {
+        ArrayList<HabitacionBase> HabitacionesBs = enrutadorPrincipal.buscarHabitaciones(cocinaB, balconB, vistaB, fechainicial, fechafinal, tipo);
+        return HabitacionesBs;
+    }
+
+    protected double CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial,String fechafinal, ArrayList<HabitacionBase> habitacionesBs, String nombre, String correo, String celular) 
+    {
+        double precio = enrutadorPrincipal.CrearReserva(documento, estadoReserva, personasEsperadas, fechainicial, fechafinal, habitacionesBs, nombre, correo, celular);
+        return precio;
+    }
+
+    protected String VerReserva(String documento) 
+    {
+        return enrutadorPrincipal.VerReserva(documento);
+    }
+
+    public String EliminarReserva(String documento, String fechactual) 
+    {
+       String resultado = enrutadorPrincipal.EliminarReserva(documento, fechactual);
+       return resultado;
+    }
+
+    public double precioProducto(String producto) 
+    {
+        return enrutadorPrincipal.precioProducto(producto);
+    }
+
+    public void AñadirServicio(String documento, String servicio, String descripcion, String fecha, boolean pagado,
+            double precio) 
+    {
+                enrutadorPrincipal.AñadirServicio(documento, servicio, descripcion, fecha, pagado, precio);
+    }
+
+    public void HacerCheckIn(String documentoPrincipal, String documento, String nombre, String correo,
+            String celular) {
+                enrutadorPrincipal.HacerCheckIn(documentoPrincipal, documento, nombre, correo, celular);
+    }
+
+    public HashMap<String, ArrayList<Servicio>> HacerCheckOut(String documento, boolean confirmarPago) {
+        return enrutadorPrincipal.HacerCheckOut(documento, confirmarPago);
+    }
+
+    public void FacturarGrupo(String documento) {
+        enrutadorPrincipal.facturarReserva(documento);
+    }
+
+    public void salirPrograma()
+    {
+        enrutadorPrincipal.salirPrograma();
     }
 
 }
