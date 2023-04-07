@@ -14,7 +14,7 @@ public class ChekInOut {
     
     public void CheckIn(Reserva reserva, Huesped huesped) {
         ArrayList<Huesped> grupo = reserva.getGrupo();
-
+        reserva.setEstadoReserva("checked");
         grupo.add(huesped);
     }
 
@@ -35,6 +35,7 @@ public class ChekInOut {
                 }
 
                 serviciosPorPagar.put(huesped.getNombre(), servicios);
+                reserva.setEstadoReserva("terminado");
             }
 
         }
