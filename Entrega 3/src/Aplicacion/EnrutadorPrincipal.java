@@ -129,9 +129,10 @@ public class EnrutadorPrincipal {
         String Texto = adminReservas.VerReserva(documento);
         return Texto;
     }
-    public void EliminarReserva(String documento, String fechactual)
+    public String  EliminarReserva(String documento, String fechactual)
     {
-        adminReservas.eliminarReserva(documento,fechactual);
+        String resultado = adminReservas.eliminarReserva(documento,fechactual);
+        return resultado;
     }
     public void AñadirServicio(String documento, String Nombreservicio, String descripcion, String fecha, boolean pagado,double precio)
     {

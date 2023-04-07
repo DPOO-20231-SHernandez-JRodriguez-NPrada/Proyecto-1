@@ -133,9 +133,10 @@ public class InterfazPrincipal {
         return enrutadorPrincipal.VerReserva(documento);
     }
 
-    public void EliminarReserva(String documento, String fechactual) 
+    public String EliminarReserva(String documento, String fechactual) 
     {
-        enrutadorPrincipal.EliminarReserva(documento, fechactual);
+       String resultado = enrutadorPrincipal.EliminarReserva(documento, fechactual);
+       return resultado;
     }
 
     public double precioProducto(String producto) 

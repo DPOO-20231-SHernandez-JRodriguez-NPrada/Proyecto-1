@@ -133,7 +133,7 @@ public class ConsolaEmpleado {
         String tipo = Input.input("Escriba el tipo de habitacion deseada");
         
         ArrayList<HabitacionBase> HabitacionesBs = padreInterfaz.buscarHabitaciones(cocinaB, balconB, vistaB, fechainicial, fechafinal, tipo);
-        String estadoReserva = Input.input("Ingrese el estado de reserva");
+        String estadoReserva = "reservado";
         double precio = padreInterfaz.CrearReserva(documento,estadoReserva,personasEsperadas,fechainicial,fechafinal,HabitacionesBs,nombre,correo,celular);
         System.out.println("Se creo con exito su reserva");
         System.out.println("El valor total de su reserva es de" + String.valueOf(precio));
@@ -146,19 +146,23 @@ public class ConsolaEmpleado {
         String Texto = padreInterfaz.VerReserva(documento);
         String[] info = Texto.split(",");
         System.out.println("El documento del huesped principal es " + documento + ".");
-        System.out.println("La fecha de ingreso es: " + info[1] + ".");
-        System.out.println("La fecha de salida es: " + info[2] + ".");
-        System.out.println("Se esperan un total de " + info[3] + " personas.");
-        System.out.println("El total de habitaciones reservadas es de " + info[4] + ".");
-        System.out.println("Los id de las habitaciones son " + info[5].split(";") + ".");
+        System.out.println("La fecha de ingreso es: " + info[0] + ".");
+        System.out.println("La fecha de salida es: " + info[1] + ".");
+        System.out.println("Se esperan un total de " + info[2] + " personas.");
+        System.out.println("El total de habitaciones reservadas es de " + info[3] + ".");
+        String[] ids =  info[4].split(";");
+        for(String id: ids)
+        {
+            System.out.println("Los id de las habitaciones son " + id +  ".");
+        }
     }
     public void EliminarReserva()
     {
         System.out.println("Ingrese los siguientes datos para eliminar la reserva");
         String documento = Input.input("Ingrese el documento del huesped principal");
         String fechactual = Input.input("Ingrese la fecha actual");
-        padreInterfaz.EliminarReserva(documento,fechactual);
-        System.out.println("Su reserva ha sido cancelada");
+        String resultado = padreInterfaz.EliminarReserva(documento,fechactual);
+        System.out.println(resultado);
     }
     public void AñadirServicio()
     {

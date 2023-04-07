@@ -1,5 +1,6 @@
 package Aplicacion.Reservas;
 import java.time.LocalDate;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
@@ -76,24 +77,32 @@ public class AdministradorReservas {
         return texto;
     }
 
-    public void eliminarReserva(String documento, String fechactual)
+    public String eliminarReserva(String documento, String fechactual)
     {   
+        String resultado = "La reserva no ha podido ser cancelada";
         Reserva reserva = datosReservas.get(documento);
         ArrayList<HabitacionReserva> habitaciones = reserva.getHabitacionesReservadas();
         String fechaini =  reserva.getFechaIni();
         String fechafin =  reserva.getFechaFin();
         LocalDate fechainires= LocalDate.parse(fechaini, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate fechactualLC= LocalDate.parse(fechactual, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        int diasEntreFechasf = (int) ChronoUnit.HOURS.between(fechactualLC, fechainires);
-        if(diasEntreFechasf>48)
+        Period diasEntreFechasP = Period.between(fechainires, fechactualLC);
+        int diasEntreFechasf =  diasEntreFechasP.getDays();
+        if(diasEntreFechasf>=2)
+        {   
+            reserva.setEstadoReserva("cancelado");
+
             for(int i = 0; i<=habitaciones.size();i++)
+            
             {   
                 HabitacionReserva habitacion = habitaciones.get(i);
                 String id = habitacion.getId();
                 enrutadorPrincipal.modificarEstadoOcupado(id,fechaini,fechafin,false);
             }
             datosReservas.remove(documento);
-
+            resultado = "Su reserva fue correctamente cancelada";
+        }
+        return resultado;
     }
 
     public void AñadirServicio(String documento, ServicioBase Nombreservicio, String descripcion, String fecha, boolean pagado,double precio) 
