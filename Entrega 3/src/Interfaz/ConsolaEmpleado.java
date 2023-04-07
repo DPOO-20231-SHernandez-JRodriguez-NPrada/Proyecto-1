@@ -136,7 +136,7 @@ public class ConsolaEmpleado {
         String estadoReserva = "reservado";
         double precio = padreInterfaz.CrearReserva(documento,estadoReserva,personasEsperadas,fechainicial,fechafinal,HabitacionesBs,nombre,correo,celular);
         System.out.println("Se creo con exito su reserva");
-        System.out.println("El valor total de su reserva es de" + String.valueOf(precio));
+        System.out.println("El valor total de su reserva es de " + String.valueOf(precio));
 
     }
     public void VerReserva()
@@ -262,7 +262,6 @@ public class ConsolaEmpleado {
         HashMap<String, ArrayList<Servicio>> servicosPorPagar = padreInterfaz.HacerCheckOut(documento, false);
         if(servicosPorPagar.size() != 0){
             System.out.println("Los servicios por pagar son: ");
-            System.out.println(servicosPorPagar.values());
             for (String key : servicosPorPagar.keySet()) {
                 System.out.println("Servicios: " + key);
                 for (Servicio servicio : servicosPorPagar.get(key)) {
