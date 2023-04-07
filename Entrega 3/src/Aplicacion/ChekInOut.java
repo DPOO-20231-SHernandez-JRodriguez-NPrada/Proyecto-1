@@ -22,30 +22,27 @@ public class ChekInOut {
 
         HashMap<String, ArrayList<Servicio>> serviciosPorPagar = new HashMap<String, ArrayList<Servicio>>();
 
-        if(confirmarPago){
+        if(!confirmarPago){
             ArrayList<Huesped> grupo = reserva.getGrupo();
-
             for (Huesped huesped : grupo) {
                 ArrayList<Servicio> servicios = new ArrayList<Servicio>();
-
-                for (Servicio servicioPosible : servicios) {
+                ArrayList<Servicio> huespedServicios = huesped.getServicios();
+                for (Servicio servicioPosible : huespedServicios) {
                     if(!servicioPosible.isPagado()){
                         servicios.add(servicioPosible);
                     }
                 }
 
                 serviciosPorPagar.put(huesped.getNombre(), servicios);
-                reserva.setEstadoReserva("terminado");
             }
 
         }
         else{
             ArrayList<Huesped> grupo = reserva.getGrupo();
-
             for (Huesped huesped : grupo) {
                 ArrayList<Servicio> servicios = new ArrayList<Servicio>();
-
-                for (Servicio servicioPosible : servicios) {
+                ArrayList<Servicio> huespedServicios = huesped.getServicios();
+                for (Servicio servicioPosible : huespedServicios) {
                     if(!servicioPosible.isPagado()){
                         servicioPosible.setPagado(true);
                     }
@@ -55,7 +52,7 @@ public class ChekInOut {
 
                 serviciosPorPagar.put(huesped.getNombre(), servicios);
             }
-
+            reserva.setEstadoReserva("terminado");
         }
 
         return serviciosPorPagar;

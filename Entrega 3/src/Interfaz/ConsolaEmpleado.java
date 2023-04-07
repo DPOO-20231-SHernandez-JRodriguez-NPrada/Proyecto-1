@@ -260,9 +260,9 @@ public class ConsolaEmpleado {
         String documento = Input.input("Ingrese el documento del huesped principal");
 
         HashMap<String, ArrayList<Servicio>> servicosPorPagar = padreInterfaz.HacerCheckOut(documento, false);
-
         if(servicosPorPagar.size() != 0){
             System.out.println("Los servicios por pagar son: ");
+            System.out.println(servicosPorPagar.values());
             for (String key : servicosPorPagar.keySet()) {
                 System.out.println("Servicios: " + key);
                 for (Servicio servicio : servicosPorPagar.get(key)) {
