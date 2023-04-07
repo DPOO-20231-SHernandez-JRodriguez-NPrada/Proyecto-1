@@ -171,7 +171,7 @@ public class ConsolaEmpleado {
         System.out.println("Para cargar el servicio ingrese los siguientes datos");
         String documento = Input.input("Ingrese el documento del huesped principal");
         String fecha = Input.input("Ingrese la fecha en la que se consumio el producto");
-        boolean pagado = Boolean.parseBoolean(Input.input("Ingrese la fecha en la que se consumio el producto"));
+        boolean pagado = Boolean.parseBoolean(Input.input("Ingrese si el servicio esta pago(true/false)"));
         String servicio = Input.input("Ingrese el nombre del servicio");
         if(servicio.equals("Restaurante"))
         {

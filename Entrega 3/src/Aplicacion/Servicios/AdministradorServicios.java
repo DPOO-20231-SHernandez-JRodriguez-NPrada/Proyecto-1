@@ -23,7 +23,7 @@ public class AdministradorServicios {
     public ServicioBase darServicio(String nombre)
     {
         ServicioBase servicio = null;
-        for(int i = 0;i <= datosServiciosBase.size();i++)
+        for(int i = 0;i < datosServiciosBase.size();i++)
         {
             ServicioBase servicioB = datosServiciosBase.get(i);
             String nombreS = servicioB.getNombre();
