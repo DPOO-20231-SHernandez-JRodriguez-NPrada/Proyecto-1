@@ -197,4 +197,8 @@ public class EnrutadorPrincipal {
         }
         
     }
+    public void salirPrograma()
+    {
+        controladorBD.GuardarPrograma();
+    }
 }

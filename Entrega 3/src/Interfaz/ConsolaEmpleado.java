@@ -94,7 +94,7 @@ public class ConsolaEmpleado {
 
             case 9:
                 System.out.println("Saliendo del programa");
-
+                salirPrograma();
                 break;
         
             default:
@@ -281,7 +281,8 @@ public class ConsolaEmpleado {
         
     }
 
-    public void salirPrograma(){
-
+    public void salirPrograma()
+    {
+        padreInterfaz.salirPrograma();
     }
 }

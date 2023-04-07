@@ -163,6 +163,9 @@ public class InterfazPrincipal {
         enrutadorPrincipal.facturarReserva(documento);
     }
 
-
+    public void salirPrograma()
+    {
+        enrutadorPrincipal.salirPrograma();
+    }
 
 }
