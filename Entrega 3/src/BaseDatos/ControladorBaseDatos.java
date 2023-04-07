@@ -100,12 +100,10 @@ public class ControladorBaseDatos {
         }
     }
 
-    private void CargarDatosFacturas() {
-        
-        
-        
-        
-        this.datosFacturas = null;
+    private void CargarDatosFacturas() throws IOException{
+        File datosFacturasFolder = new File("Entrega 3/Data/Facturas");
+
+        this.datosFacturas = traductor.TraducirFacturas(datosFacturasFolder);
     }
 
     //Metodos Getters

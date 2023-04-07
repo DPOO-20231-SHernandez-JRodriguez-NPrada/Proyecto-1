@@ -19,7 +19,7 @@ public class AdministradorFacturas {
 
     public void CrearFacturaCliente(Huesped huesped){
         ArrayList<Servicio> servicios = huesped.getServicios();
-
+        ArrayList<Servicio> serviciosBorrar= new ArrayList<Servicio>();
         Random rnd = new Random();
 
         for (Servicio servicio : servicios) {
@@ -30,10 +30,22 @@ public class AdministradorFacturas {
                 }
                 
                 Factura factura = new Factura(huesped.getDocumento(), huesped.getNombre(), servicio.getPrecio(), codigo);
-                this.datosFacturas.get(huesped.getNombre()).add(factura);
-
-                servicios.remove(servicio);
+                if(datosFacturas.containsKey(huesped.getNombre()))
+                {
+                    this.datosFacturas.get(huesped.getNombre()).add(factura);
+                }
+                else
+                {
+                    ArrayList<Factura> facturasHuesped = new ArrayList<Factura>();
+                    facturasHuesped.add(factura);
+                    this.datosFacturas.put(huesped.getNombre(), facturasHuesped);
+                }
+                serviciosBorrar.add(servicio);
             }
+        }
+        for(Servicio servicio : serviciosBorrar)
+        {
+            servicios.remove(servicio);
         }
     }
 

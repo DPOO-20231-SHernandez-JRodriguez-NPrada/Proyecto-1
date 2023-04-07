@@ -14,6 +14,7 @@ import Aplicacion.Servicios.Producto;
 import Aplicacion.Servicios.Servicio;
 import Aplicacion.Servicios.ServicioBase;
 import Aplicacion.Tarifas.Tarifa;
+import Facturas.Factura;
 
 public class TraductorFile {
 
@@ -357,6 +358,54 @@ public class TraductorFile {
         return MapaHuespedes;
     }
 
-    
+    public HashMap<String, ArrayList<Factura>> TraducirFacturas(final File datosFacturasFolder) {
+        HashMap<String, ArrayList<Factura>> nuevoMapaFacturas = new HashMap<String, ArrayList<Factura>>();
+
+        try {
+            for (final File facturaFile : datosFacturasFolder.listFiles()){
+                Scanner scannerLectura = new Scanner(facturaFile);
+                scannerLectura.nextLine();
+
+                ArrayList<Factura> facturasHuesped = new ArrayList<Factura>();
+
+                if(scannerLectura.hasNextLine()){
+                    String[] datosFactura = scannerLectura.nextLine().split(",");
+                    String documento = datosFactura[0];
+                    String nombreHuesped = datosFactura[1];
+                    String precio = datosFactura[2];
+                    String codigo = datosFactura[3];
+
+                    Factura factura = new Factura(documento, nombreHuesped, Double.parseDouble(precio), codigo);
+
+                    facturasHuesped.add(factura);
+
+                    nuevoMapaFacturas.put(documento, facturasHuesped);
+                }
+
+                while(scannerLectura.hasNextLine()){
+                    String[] datosFactura = scannerLectura.nextLine().split(",");
+                    String documento = datosFactura[0];
+                    String nombreHuesped = datosFactura[1];
+                    String precio = datosFactura[2];
+                    String codigo = datosFactura[3];
+
+                    Factura factura = new Factura(documento, nombreHuesped, Double.parseDouble(precio), codigo);
+
+                    nuevoMapaFacturas.get(documento).add(factura);
+                    
+                    ArrayList<Factura> facturasNuevaLista = new ArrayList<Factura>();
+                    facturasNuevaLista.add(factura);
+                    nuevoMapaFacturas.put(documento, facturasNuevaLista);
+                }
+                
+                scannerLectura.close();
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return nuevoMapaFacturas;
+    }
     
 }
