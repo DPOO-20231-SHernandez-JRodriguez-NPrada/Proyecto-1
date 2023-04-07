@@ -41,7 +41,7 @@ public class EnrutadorPrincipal {
         this.adminFacturas = new AdministradorFacturas();
 
         this.adminTarifas = new AdministradorTarifas();
-        this.adminReservas = new AdministradorReservas();
+        this.adminReservas = new AdministradorReservas(this);
         this.adminHuespedes = new AdministradorHuespedes();
         this.adminServicios = new AdministradorServicios();
         this.adminHabitaciones = new AdministradorHabitaciones();
@@ -192,7 +192,6 @@ public class EnrutadorPrincipal {
         ArrayList<Huesped> huespedes = reserva.getGrupo();
 
         adminFacturas.CrearFacturaLiderGrupo(reserva);
-
         for (Huesped huesped : huespedes) {
             adminFacturas.CrearFacturaCliente(huesped);
         }

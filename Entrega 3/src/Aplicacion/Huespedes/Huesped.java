@@ -17,7 +17,7 @@ public class Huesped {
         documento=doc;
         this.correo=correo;
         this.celular=celular;
-        this.servicios = new ArrayList<Servicio>();
+        this.servicios = servicios;
     }
 
     public String getNombre() {

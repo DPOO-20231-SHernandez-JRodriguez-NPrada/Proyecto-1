@@ -14,9 +14,14 @@ import Aplicacion.EnrutadorPrincipal;
 
 public class AdministradorReservas {
 
-    private EnrutadorPrincipal enrutadorPrincipal;
+
+    public EnrutadorPrincipal enrutadorPrincipal;
     HashMap<String, Reserva> datosReservas;
 
+    public AdministradorReservas(EnrutadorPrincipal enrutadorPrincipal)
+    {
+        this.enrutadorPrincipal = enrutadorPrincipal;
+    }
     public void AsignarDatosReserva(HashMap<String, Reserva> datosReservas) {
         this.datosReservas = datosReservas;
     }
@@ -24,6 +29,7 @@ public class AdministradorReservas {
     public double CrearReserva(String documento, String estadoReserva, int personasEsperadas, String fechainicial, String fechafinal, ArrayList<HabitacionBase> HabitacionesBs,Huesped huesped)
     {
         ArrayList<HabitacionReserva> HabitacionesRs = new ArrayList<HabitacionReserva>();
+        ArrayList<Servicio> servicios = new ArrayList<Servicio>();
         boolean parar = false;
         int i = 0;
         int capacidad = 0;
@@ -35,7 +41,7 @@ public class AdministradorReservas {
             boolean cocina = habitacion.getCocina();
             boolean balcon = habitacion.getBalcon();
             String tipo = habitacion.getTipo();
-            HabitacionReserva HabitacionRs = new HabitacionReserva(id, vista, cocina, balcon, tipo,null);
+            HabitacionReserva HabitacionRs = new HabitacionReserva(id, vista, cocina, balcon, tipo,servicios);
             HabitacionesRs.add(HabitacionRs);
             enrutadorPrincipal.modificarEstadoOcupado(id,fechainicial,fechafinal,true);
             capacidad += habitacion.getCapacidad();
@@ -52,6 +58,7 @@ public class AdministradorReservas {
         Reserva datosReserva = new Reserva(documento, estadoReserva, personasEsperadas, fechainicial, fechafinal, HabitacionesRs);
         ArrayList<Huesped> grupo = datosReserva.getGrupo();
         grupo.add(huesped);
+
         double precio = enrutadorPrincipal.calcularPrecio(datosReserva);
         datosReservas.put(documento, datosReserva);
         return precio;

@@ -13,12 +13,8 @@ public class AdministradorFacturas {
 
     private HashMap<String, ArrayList<Factura>> datosFacturas;
 
-
-    public AdministradorFacturas() {
-    
-    }
-
     public void AsignarFacturas(HashMap<String, ArrayList<Factura>> datosFacturas) {
+        this.datosFacturas = datosFacturas;
     }
 
     public void CrearFacturaCliente(Huesped huesped){
@@ -34,7 +30,7 @@ public class AdministradorFacturas {
                 }
                 
                 Factura factura = new Factura(huesped.getDocumento(), huesped.getNombre(), servicio.getPrecio(), codigo);
-                datosFacturas.get(huesped.getNombre()).add(factura);
+                this.datosFacturas.get(huesped.getNombre()).add(factura);
 
                 servicios.remove(servicio);
             }

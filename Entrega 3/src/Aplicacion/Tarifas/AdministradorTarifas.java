@@ -82,7 +82,6 @@ public class AdministradorTarifas {
 
         LocalDate fechai= LocalDate.parse(fechaini, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         LocalDate fechaf= LocalDate.parse(fechafin, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-
         String anio = Integer.toString(fechai.getYear());
         String aniofinal = Integer.toString(fechaf.getYear());
         if(anio.equals(aniofinal)==false)
@@ -93,7 +92,8 @@ public class AdministradorTarifas {
         LocalDate fecha = LocalDate.parse(fechaInicio, DateTimeFormatter.ofPattern("dd/MM/yyyy"));
         int diasDeReserva = (int) ChronoUnit.DAYS.between(fecha, fechaf); 
         int posArreglo = (int) ChronoUnit.DAYS.between(fecha, fechai);
-        for(int i=0; i<=HabitacionRes.size();i++)
+
+        for(int i=0; i<HabitacionRes.size();i++)
         {
             HabitacionReserva habitacion = HabitacionRes.get(i);
             String tipo = habitacion.getTipo();
@@ -156,7 +156,7 @@ public class AdministradorTarifas {
                     }
                 }
             }
-            if(posArreglo+diasDeReserva<=365)
+            if(posArreglo+diasDeReserva<365)
             {
                 for(int x=posArreglo;x<=posArreglo+diasDeReserva;x++)
                 {
