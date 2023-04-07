@@ -13,7 +13,7 @@ public class AdministradorHuespedes {
 
     public void AsignarHuespedes(HashMap<String, Huesped> datosHuespedes)
     {
-
+        this.hashHuesped = datosHuespedes;
     }
 
     public Huesped crearHuesped(String nombre, String doc, String correo, String celular)
@@ -42,7 +42,7 @@ public class AdministradorHuespedes {
         double precioT = precioS + precio;
         String registro = Nombreservicio.getRegistro();
         Servicio servicio = new Servicio(precioT, documento, fecha, pagado, descripcion, registro);
-        Huesped huesped = hashHuesped.get(documento);
+        Huesped huesped = this.hashHuesped.get(documento);
         ArrayList<Servicio> listaServicios = huesped.getServicios();
         listaServicios.add(servicio);
     }
