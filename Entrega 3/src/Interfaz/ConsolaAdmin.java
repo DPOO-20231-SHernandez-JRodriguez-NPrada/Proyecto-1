@@ -68,7 +68,7 @@ public class ConsolaAdmin extends ConsolaEmpleado
 
             case 9:
                 System.out.println("Saliendo del programa");
-
+                padreInterfaz.salirPrograma();
                 break;
         
             default:

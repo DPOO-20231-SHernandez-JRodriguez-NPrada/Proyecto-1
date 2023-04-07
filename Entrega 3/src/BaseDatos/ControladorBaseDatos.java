@@ -162,7 +162,8 @@ public class ControladorBaseDatos {
         return this.datosFacturas;
     }
 
-    public void GuardarPrograma(){
+    public void GuardarPrograma()
+    {
         traductorObject.GuardarReservasHuespedesServicios(datosReservas);
         traductorObject.GuardarTarifas(datosTarifas);
         traductorObject.GuardarFacturas(datosFacturas);

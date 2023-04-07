@@ -34,14 +34,11 @@ public class ConsolaEmpleado {
         {
             this.MostrarMenuPrincipal();
             String numeroOpcion = Input.input("Elija la opcion");
-            if (Integer.parseInt(numeroOpcion) != 9)
-            {
-                EjecutarOpcion(Integer.parseInt(numeroOpcion));
-            }
-            else
+            EjecutarOpcion(Integer.parseInt(numeroOpcion));
+            if (numeroOpcion.equals("9"))
             {
                 parar = true;
-            }
+            } 
         }
     }
 
@@ -93,10 +90,10 @@ public class ConsolaEmpleado {
                 break;
 
             case 9:
-                System.out.println("Saliendo del programa");
+            
                 salirPrograma();
                 break;
-        
+            
             default:
                 break;
         }
@@ -281,7 +278,7 @@ public class ConsolaEmpleado {
         
     }
 
-    public void salirPrograma()
+    private void salirPrograma()
     {
         padreInterfaz.salirPrograma();
     }

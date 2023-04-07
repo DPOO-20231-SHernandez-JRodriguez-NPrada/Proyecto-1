@@ -44,20 +44,20 @@ public class TraductorObject {
                     archivoReservas.createNewFile();
                     FileWriter myWriterReservas = new FileWriter(archivoReservas);
 
-                    myWriterReservas.write("documento,estadoReserva,PersonasEsperadas,fechaLlegada,fechaSalida");
-                    myWriterReservas.write("************************************************");
-                    myWriterReservas.write("nombre,documento,correo,numeroCelular");
-                    myWriterReservas.write("************************************************");
+                    myWriterReservas.write("documento,estadoReserva,PersonasEsperadas,fechaLlegada,fechaSalida\n");
+                    myWriterReservas.write("************************************************\n");
+                    myWriterReservas.write("nombre,documento,correo,numeroCelular\n");
+                    myWriterReservas.write("************************************************\n");
 
                     for (String llave : llavesMapa) {
                         Reserva reserva = mapaReservas.get(llave);
                         ArrayList<Huesped> grupo = reserva.getGrupo();
                         ArrayList<HabitacionReserva> habitaciones = reserva.getHabitacionesReservadas();
 
-                        myWriterReservas.write(reserva.getDocumento() + "," + reserva.getEstadoReserva() + "," + reserva.getPersonasEsperadas() + "," + reserva.getFechaIni() + "," + reserva.getFechaFin());
-                        myWriterReservas.write("************************************************");
+                        myWriterReservas.write(reserva.getDocumento() + "," + reserva.getEstadoReserva() + "," + reserva.getPersonasEsperadas() + "," + reserva.getFechaIni() + "," + reserva.getFechaFin()+"\n");
+                        myWriterReservas.write("************************************************\n");
                         for (Huesped huesped : grupo) {
-                            myWriterReservas.write(huesped.getNombre() + "," + huesped.getDocumento() + "," + huesped.getCorreo() + "," + huesped.getCelular());
+                            myWriterReservas.write(huesped.getNombre() + "," + huesped.getDocumento() + "," + huesped.getCorreo() + "," + huesped.getCelular()+"\n");
 
                             
                             String nombreHuesped = huesped.getNombre();
@@ -70,20 +70,20 @@ public class TraductorObject {
                             archivoServiciosHuesped.createNewFile();
 
                             FileWriter myWriterServiciosHuesped = new FileWriter(archivoServiciosHuesped);
-                            myWriterServiciosHuesped.write("nombre,documento,correo,numeroCelular");
-                            myWriterServiciosHuesped.write(nombreHuesped+","+documentoHuesped+","+correoHuesped+","+numeroCelularHuesped);
-                            myWriterServiciosHuesped.write("nombre,precio,descripcion,registro,fecha,pagado");
+                            myWriterServiciosHuesped.write("nombre,documento,correo,numeroCelular\n");
+                            myWriterServiciosHuesped.write(nombreHuesped+","+documentoHuesped+","+correoHuesped+","+numeroCelularHuesped +"\n");
+                            myWriterServiciosHuesped.write("nombre,precio,descripcion,registro,fecha,pagado\n");
 
                             ArrayList<Servicio> servicios = huesped.getServicios();
 
                             for (Servicio servicio : servicios) {
-                                myWriterServiciosHuesped.write(servicio.getNombre()+","+servicio.getPrecio()+","+servicio.getDescripcion()+","+servicio.getRegistro()+","+servicio.getFecha()+","+servicio.isPagado());
+                                myWriterServiciosHuesped.write(servicio.getNombre()+","+servicio.getPrecio()+","+servicio.getDescripcion()+","+servicio.getRegistro()+","+servicio.getFecha()+","+servicio.isPagado() + "\n");
                             }
 
                             myWriterServiciosHuesped.close();
 
                         }
-                        myWriterReservas.write("************************************************");
+                        myWriterReservas.write("************************************************\n");
 
                         for (HabitacionReserva habitacion : habitaciones) {
                             String idHabitacion = habitacion.getId();
@@ -98,15 +98,15 @@ public class TraductorObject {
                             archivoServiciosHabitacion.createNewFile();
 
                             FileWriter myWriterServiciosHabitacion = new FileWriter(archivoServiciosHabitacion);
-                            myWriterServiciosHabitacion.write("documento,id,tipo,balcon,vista,cocina");
-                            myWriterServiciosHabitacion.write(reserva.getDocumento()+","+idHabitacion+","+tipoHabitacion+","+balconHabitacion+","+vistaHabitacion+","+cocinaHabitacion);
-                            myWriterServiciosHabitacion.write("nombre,precio,descripcion,registro,fecha,pagado");
+                            myWriterServiciosHabitacion.write("documento,id,tipo,balcon,vista,cocina\n");
+                            myWriterServiciosHabitacion.write(reserva.getDocumento()+","+idHabitacion+","+tipoHabitacion+","+balconHabitacion+","+vistaHabitacion+","+cocinaHabitacion+"\n");
+                            myWriterServiciosHabitacion.write("nombre,precio,descripcion,registro,fecha,pagado\n");
 
 
                             ArrayList<Servicio> servicios = habitacion.getServicios();
 
                             for (Servicio servicio : servicios) {
-                                myWriterServiciosHabitacion.write(servicio.getNombre()+","+servicio.getPrecio()+","+servicio.getDescripcion()+","+servicio.getRegistro()+","+servicio.getFecha()+","+servicio.isPagado());
+                                myWriterServiciosHabitacion.write(servicio.getNombre()+","+servicio.getPrecio()+","+servicio.getDescripcion()+","+servicio.getRegistro()+","+servicio.getFecha()+","+servicio.isPagado()+"\n");
                             }
 
                             myWriterServiciosHabitacion.close();
@@ -148,8 +148,8 @@ public class TraductorObject {
 
                 FileWriter myWriterTarifa = new FileWriter(archivoTarifa);
 
-                myWriterTarifa.write("anio,estandar,suite,doble");
-                myWriterTarifa.write(anio);
+                myWriterTarifa.write("anio,estandar,suite,doble\n");
+                myWriterTarifa.write(anio+"\n");
 
                 for (int i = 0; i < preciosEstandar.length; i++) {
                     estandarString = estandarString + preciosEstandar[i] + ",";
@@ -157,9 +157,9 @@ public class TraductorObject {
                     dobleString = dobleString + preciosDoble[i] + ",";
                 }
                 
-                myWriterTarifa.write(estandarString);
-                myWriterTarifa.write(suiteString);
-                myWriterTarifa.write(dobleString);
+                myWriterTarifa.write(estandarString+"\n");
+                myWriterTarifa.write(suiteString+"\n");
+                myWriterTarifa.write(dobleString+"\n");
                 
                 myWriterTarifa.close();
             }

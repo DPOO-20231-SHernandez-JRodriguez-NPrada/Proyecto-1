@@ -92,7 +92,7 @@ public class TraductorFile {
                 }
                 ocupacionHabitaciones.put(id+anio, ocupacion);
             }
-            
+            scannerLectura.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -304,7 +304,7 @@ public class TraductorFile {
 
                 reservas.put(documento, reserva);
             }
-
+        scannerLectura.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
